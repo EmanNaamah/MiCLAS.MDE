@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiCLAS.MDE", "MiCLAS.MDE.csproj", "{B337FF98-589C-43A2-839A-7D8603A0A113}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B337FF98-589C-43A2-839A-7D8603A0A113}.Debug|x86.ActiveCfg = Debug|x86
+		{B337FF98-589C-43A2-839A-7D8603A0A113}.Debug|x86.Build.0 = Debug|x86
+		{B337FF98-589C-43A2-839A-7D8603A0A113}.Release|x86.ActiveCfg = Release|x86
+		{B337FF98-589C-43A2-839A-7D8603A0A113}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F4DE81E-6E3D-4F7A-AA15-D81D771432E6}
+	EndGlobalSection
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 1
+		SccProjectUniqueName0 = MiCLAS.MDE.csproj
+		SccProjectName0 = $/MDE/MiCLAS.MDE/MiCLAS.MDE
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:Dynamsoft\u0020SourceAnywhere
+	EndGlobalSection
+EndGlobal
