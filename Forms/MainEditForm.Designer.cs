@@ -53,7 +53,6 @@
             DevComponents.DotNetBar.Keyboard.FlatStyleRenderer flatStyleRenderer1 = new DevComponents.DotNetBar.Keyboard.FlatStyleRenderer();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainEditForm));
             this.mainLayoutControl = new DevExpress.XtraLayout.LayoutControl();
-            this.tbLand = new MiCLAS.MDE.CustomTextEdit();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.lcMengeGezaeht2 = new DevExpress.XtraEditors.LabelControl();
             this.lbBenuzter = new DevExpress.XtraEditors.LabelControl();
@@ -62,6 +61,31 @@
             this.lcBezeichnung = new DevExpress.XtraEditors.LabelControl();
             this.btnAbbruch = new DevExpress.XtraEditors.SimpleButton();
             this.btnSpeichern = new DevExpress.XtraEditors.SimpleButton();
+            this.lcArtikelnummer = new DevExpress.XtraEditors.LabelControl();
+            this.lcLager = new DevExpress.XtraEditors.LabelControl();
+            this.tbHerstelldatum = new DevExpress.XtraEditors.DateEdit();
+            this.tbVerfallsdatum = new DevExpress.XtraEditors.DateEdit();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lciLcArtikelnummer = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciLcLager = new DevExpress.XtraLayout.LayoutControlItem();
+            this.sllMenge1 = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.sllMenge2 = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.lciLbBenuzter = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lciLcBezeichnung = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciLcMengeGezaeht = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciLcMengeGezaeht2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciBtnSpeichern = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciBtnAbbruch = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciBtnResetScan = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lciTbHerstelldatum = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciTbVerfallsdatum = new DevExpress.XtraLayout.LayoutControlItem();
+            this.toolTipController11 = new DevExpress.Utils.ToolTipController(this.components);
+            this.tbLand = new MiCLAS.MDE.CustomTextEdit();
             this.keyboardControlNum = new DevComponents.DotNetBar.Keyboard.KeyboardControl();
             this.tbAb4 = new MiCLAS.MDE.CustomTextEdit();
             this.tbAb3 = new MiCLAS.MDE.CustomTextEdit();
@@ -71,37 +95,43 @@
             this.tbMenge1 = new MiCLAS.MDE.CustomTextEdit();
             this.tbCharge = new MiCLAS.MDE.CustomTextEdit();
             this.tbInput = new MiCLAS.MDE.CustomTextEdit();
-            this.lcArtikelnummer = new DevExpress.XtraEditors.LabelControl();
-            this.lcLager = new DevExpress.XtraEditors.LabelControl();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.lciLcArtikelnummer = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciLcLager = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciTbInput = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciTbMenge2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciTbMenge1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.sllMenge1 = new DevExpress.XtraLayout.SimpleLabelItem();
-            this.sllMenge2 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.lciTbCharge = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciLbBenuzter = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciKeyboardControlNum = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciLcBezeichnung = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciLcMengeGezaeht = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciLcMengeGezaeht2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciLand = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciTbAb1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciTbAb2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciTbAb3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciTbAb4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciBtnSpeichern = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciBtnAbbruch = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciBtnResetScan = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainLayoutControl)).BeginInit();
             this.mainLayoutControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbHerstelldatum.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbHerstelldatum.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbVerfallsdatum.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbVerfallsdatum.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciLcArtikelnummer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciLcLager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sllMenge1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sllMenge2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciLbBenuzter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciLcBezeichnung)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciLcMengeGezaeht)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciLcMengeGezaeht2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBtnSpeichern)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBtnAbbruch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBtnResetScan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciTbHerstelldatum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciTbVerfallsdatum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLand.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAb4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAb3.Properties)).BeginInit();
@@ -111,33 +141,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbMenge1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbCharge.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbInput.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciLcArtikelnummer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciLcLager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbMenge2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbMenge1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sllMenge1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sllMenge2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbCharge)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciLbBenuzter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciKeyboardControlNum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciLcBezeichnung)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciLcMengeGezaeht)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciLcMengeGezaeht2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciLand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbAb1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbAb2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbAb3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbAb4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBtnSpeichern)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBtnAbbruch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBtnResetScan)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             this.SuspendLayout();
             // 
             // mainLayoutControl
@@ -161,27 +176,17 @@
             this.mainLayoutControl.Controls.Add(this.tbInput);
             this.mainLayoutControl.Controls.Add(this.lcArtikelnummer);
             this.mainLayoutControl.Controls.Add(this.lcLager);
+            this.mainLayoutControl.Controls.Add(this.tbHerstelldatum);
+            this.mainLayoutControl.Controls.Add(this.tbVerfallsdatum);
             this.mainLayoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainLayoutControl.Location = new System.Drawing.Point(0, 0);
             this.mainLayoutControl.Name = "mainLayoutControl";
-            this.mainLayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1331, 379, 1382, 778);
+            this.mainLayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(538, 254, 1382, 778);
             this.mainLayoutControl.OptionsFocus.EnableAutoTabOrder = false;
             this.mainLayoutControl.Root = this.layoutControlGroup1;
             this.mainLayoutControl.Size = new System.Drawing.Size(885, 426);
             this.mainLayoutControl.TabIndex = 0;
             this.mainLayoutControl.Text = "layoutControl1";
-            // 
-            // tbLand
-            // 
-            this.tbLand.Location = new System.Drawing.Point(91, 168);
-            this.tbLand.Name = "tbLand";
-            this.tbLand.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbLand.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.tbLand.Properties.MaxLength = 3;
-            this.tbLand.Size = new System.Drawing.Size(58, 20);
-            this.tbLand.StyleController = this.mainLayoutControl;
-            this.tbLand.TabIndex = 4;
-            this.tbLand.ToolTipController = this.toolTipController1;
             // 
             // toolTipController1
             // 
@@ -231,9 +236,9 @@
             this.btnResetScan.Appearance.Options.UseTextOptions = true;
             this.btnResetScan.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.btnResetScan.CausesValidation = false;
-            this.btnResetScan.Location = new System.Drawing.Point(600, 282);
+            this.btnResetScan.Location = new System.Drawing.Point(600, 236);
             this.btnResetScan.Name = "btnResetScan";
-            this.btnResetScan.Size = new System.Drawing.Size(273, 132);
+            this.btnResetScan.Size = new System.Drawing.Size(273, 178);
             this.btnResetScan.StyleController = this.mainLayoutControl;
             this.btnResetScan.TabIndex = 16;
             this.btnResetScan.Text = "Zurück zum Scan";
@@ -254,9 +259,9 @@
             this.btnAbbruch.AutoWidthInLayoutControl = true;
             this.btnAbbruch.CausesValidation = false;
             this.btnAbbruch.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnAbbruch.Location = new System.Drawing.Point(600, 147);
+            this.btnAbbruch.Location = new System.Drawing.Point(600, 124);
             this.btnAbbruch.Name = "btnAbbruch";
-            this.btnAbbruch.Size = new System.Drawing.Size(273, 131);
+            this.btnAbbruch.Size = new System.Drawing.Size(273, 108);
             this.btnAbbruch.StyleController = this.mainLayoutControl;
             this.btnAbbruch.TabIndex = 12;
             this.btnAbbruch.Text = "Beenden / Lager wechseln";
@@ -267,11 +272,294 @@
             this.btnSpeichern.AutoWidthInLayoutControl = true;
             this.btnSpeichern.Location = new System.Drawing.Point(600, 12);
             this.btnSpeichern.Name = "btnSpeichern";
-            this.btnSpeichern.Size = new System.Drawing.Size(273, 131);
+            this.btnSpeichern.Size = new System.Drawing.Size(273, 108);
             this.btnSpeichern.StyleController = this.mainLayoutControl;
             this.btnSpeichern.TabIndex = 11;
             this.btnSpeichern.Text = "Speichern";
             this.btnSpeichern.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // lcArtikelnummer
+            // 
+            this.lcArtikelnummer.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lcArtikelnummer.Location = new System.Drawing.Point(91, 46);
+            this.lcArtikelnummer.Name = "lcArtikelnummer";
+            this.lcArtikelnummer.Size = new System.Drawing.Size(505, 13);
+            this.lcArtikelnummer.StyleController = this.mainLayoutControl;
+            this.lcArtikelnummer.TabIndex = 1;
+            this.lcArtikelnummer.Text = "Bezeichnung";
+            // 
+            // lcLager
+            // 
+            this.lcLager.Location = new System.Drawing.Point(91, 29);
+            this.lcLager.Name = "lcLager";
+            this.lcLager.Size = new System.Drawing.Size(27, 13);
+            this.lcLager.StyleController = this.mainLayoutControl;
+            this.lcLager.TabIndex = 0;
+            this.lcLager.Text = "Lager";
+            // 
+            // tbHerstelldatum
+            // 
+            this.tbHerstelldatum.EditValue = null;
+            this.tbHerstelldatum.Location = new System.Drawing.Point(91, 192);
+            this.tbHerstelldatum.Name = "tbHerstelldatum";
+            this.tbHerstelldatum.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbHerstelldatum.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbHerstelldatum.Size = new System.Drawing.Size(199, 20);
+            this.tbHerstelldatum.StyleController = this.mainLayoutControl;
+            this.tbHerstelldatum.TabIndex = 5;
+            // 
+            // tbVerfallsdatum
+            // 
+            this.tbVerfallsdatum.EditValue = null;
+            this.tbVerfallsdatum.Location = new System.Drawing.Point(91, 216);
+            this.tbVerfallsdatum.Name = "tbVerfallsdatum";
+            this.tbVerfallsdatum.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbVerfallsdatum.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbVerfallsdatum.Size = new System.Drawing.Size(199, 20);
+            this.tbVerfallsdatum.StyleController = this.mainLayoutControl;
+            this.tbVerfallsdatum.TabIndex = 6;
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.CustomizationFormText = "layoutControlGroup1";
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lciLcArtikelnummer,
+            this.lciLcLager,
+            this.lciTbInput,
+            this.lciTbCharge,
+            this.lciLbBenuzter,
+            this.layoutControlGroup2,
+            this.lciLcBezeichnung,
+            this.lciLcMengeGezaeht,
+            this.lciLcMengeGezaeht2,
+            this.lciLand,
+            this.lciTbAb1,
+            this.lciTbAb2,
+            this.lciTbAb3,
+            this.lciTbAb4,
+            this.lciBtnSpeichern,
+            this.lciBtnAbbruch,
+            this.lciBtnResetScan,
+            this.emptySpaceItem3,
+            this.emptySpaceItem4,
+            this.lciTbMenge1,
+            this.lciTbHerstelldatum,
+            this.sllMenge1,
+            this.lciTbMenge2,
+            this.lciTbVerfallsdatum,
+            this.sllMenge2,
+            this.emptySpaceItem1,
+            this.emptySpaceItem2,
+            this.emptySpaceItem6,
+            this.emptySpaceItem5});
+            this.layoutControlGroup1.Name = "Root";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(885, 426);
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // lciLcArtikelnummer
+            // 
+            this.lciLcArtikelnummer.Control = this.lcArtikelnummer;
+            this.lciLcArtikelnummer.CustomizationFormText = "Artikel Nr.:";
+            this.lciLcArtikelnummer.Location = new System.Drawing.Point(0, 34);
+            this.lciLcArtikelnummer.Name = "lciLcArtikelnummer";
+            this.lciLcArtikelnummer.Size = new System.Drawing.Size(588, 17);
+            this.lciLcArtikelnummer.Text = "Artikel Nr.:";
+            this.lciLcArtikelnummer.TextSize = new System.Drawing.Size(75, 13);
+            // 
+            // lciLcLager
+            // 
+            this.lciLcLager.Control = this.lcLager;
+            this.lciLcLager.CustomizationFormText = "Lagerfach:";
+            this.lciLcLager.Location = new System.Drawing.Point(0, 17);
+            this.lciLcLager.Name = "lciLcLager";
+            this.lciLcLager.Size = new System.Drawing.Size(588, 17);
+            this.lciLcLager.Text = "Lagerfach:";
+            this.lciLcLager.TextSize = new System.Drawing.Size(75, 13);
+            // 
+            // sllMenge1
+            // 
+            this.sllMenge1.AllowHotTrack = false;
+            this.sllMenge1.CustomizationFormText = "Stck";
+            this.sllMenge1.Location = new System.Drawing.Point(237, 228);
+            this.sllMenge1.Name = "sllMenge1";
+            this.sllMenge1.Size = new System.Drawing.Size(79, 24);
+            this.sllMenge1.Text = "Stck";
+            this.sllMenge1.TextSize = new System.Drawing.Size(75, 13);
+            // 
+            // sllMenge2
+            // 
+            this.sllMenge2.AllowHotTrack = false;
+            this.sllMenge2.CustomizationFormText = "Stck";
+            this.sllMenge2.Location = new System.Drawing.Point(237, 252);
+            this.sllMenge2.Name = "sllMenge2";
+            this.sllMenge2.Size = new System.Drawing.Size(79, 24);
+            this.sllMenge2.Text = "Stck";
+            this.sllMenge2.TextSize = new System.Drawing.Size(75, 13);
+            // 
+            // lciLbBenuzter
+            // 
+            this.lciLbBenuzter.Control = this.lbBenuzter;
+            this.lciLbBenuzter.CustomizationFormText = "Benutzer:";
+            this.lciLbBenuzter.Location = new System.Drawing.Point(0, 0);
+            this.lciLbBenuzter.Name = "lciLbBenuzter";
+            this.lciLbBenuzter.Size = new System.Drawing.Size(588, 17);
+            this.lciLbBenuzter.Text = "Benutzer:";
+            this.lciLbBenuzter.TextSize = new System.Drawing.Size(75, 13);
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(282, 204);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(69, 24);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(282, 180);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(69, 24);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.GroupBordersVisible = false;
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lciKeyboardControlNum});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 276);
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.OptionsItemText.TextAlignMode = DevExpress.XtraLayout.TextAlignModeGroup.AlignLocal;
+            this.layoutControlGroup2.Size = new System.Drawing.Size(588, 130);
+            // 
+            // lciLcBezeichnung
+            // 
+            this.lciLcBezeichnung.Control = this.lcBezeichnung;
+            this.lciLcBezeichnung.CustomizationFormText = "Bezeichnung:";
+            this.lciLcBezeichnung.Location = new System.Drawing.Point(0, 51);
+            this.lciLcBezeichnung.Name = "lciLcBezeichnung";
+            this.lciLcBezeichnung.Size = new System.Drawing.Size(588, 17);
+            this.lciLcBezeichnung.Text = "Bezeichnung:";
+            this.lciLcBezeichnung.TextSize = new System.Drawing.Size(75, 13);
+            // 
+            // lciLcMengeGezaeht
+            // 
+            this.lciLcMengeGezaeht.Control = this.lcMengeGezaeht;
+            this.lciLcMengeGezaeht.ControlAlignment = System.Drawing.ContentAlignment.TopRight;
+            this.lciLcMengeGezaeht.CustomizationFormText = "Bereits gezählt:";
+            this.lciLcMengeGezaeht.Location = new System.Drawing.Point(0, 68);
+            this.lciLcMengeGezaeht.Name = "lciLcMengeGezaeht";
+            this.lciLcMengeGezaeht.Size = new System.Drawing.Size(148, 40);
+            this.lciLcMengeGezaeht.Text = "Bereits gezählt:";
+            this.lciLcMengeGezaeht.TextSize = new System.Drawing.Size(75, 13);
+            // 
+            // lciLcMengeGezaeht2
+            // 
+            this.lciLcMengeGezaeht2.Control = this.lcMengeGezaeht2;
+            this.lciLcMengeGezaeht2.CustomizationFormText = "layoutControlItem8";
+            this.lciLcMengeGezaeht2.Location = new System.Drawing.Point(148, 68);
+            this.lciLcMengeGezaeht2.Name = "lciLcMengeGezaeht2";
+            this.lciLcMengeGezaeht2.Size = new System.Drawing.Size(440, 40);
+            this.lciLcMengeGezaeht2.TextSize = new System.Drawing.Size(0, 0);
+            this.lciLcMengeGezaeht2.TextVisible = false;
+            // 
+            // lciBtnSpeichern
+            // 
+            this.lciBtnSpeichern.Control = this.btnSpeichern;
+            this.lciBtnSpeichern.CustomizationFormText = "layoutControlItem12";
+            this.lciBtnSpeichern.Location = new System.Drawing.Point(588, 0);
+            this.lciBtnSpeichern.MinSize = new System.Drawing.Size(60, 26);
+            this.lciBtnSpeichern.Name = "lciBtnSpeichern";
+            this.lciBtnSpeichern.Size = new System.Drawing.Size(277, 112);
+            this.lciBtnSpeichern.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lciBtnSpeichern.TextSize = new System.Drawing.Size(0, 0);
+            this.lciBtnSpeichern.TextVisible = false;
+            // 
+            // lciBtnAbbruch
+            // 
+            this.lciBtnAbbruch.Control = this.btnAbbruch;
+            this.lciBtnAbbruch.CustomizationFormText = "layoutControlItem13";
+            this.lciBtnAbbruch.Location = new System.Drawing.Point(588, 112);
+            this.lciBtnAbbruch.MinSize = new System.Drawing.Size(139, 26);
+            this.lciBtnAbbruch.Name = "lciBtnAbbruch";
+            this.lciBtnAbbruch.Size = new System.Drawing.Size(277, 112);
+            this.lciBtnAbbruch.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lciBtnAbbruch.TextSize = new System.Drawing.Size(0, 0);
+            this.lciBtnAbbruch.TextVisible = false;
+            // 
+            // lciBtnResetScan
+            // 
+            this.lciBtnResetScan.Control = this.btnResetScan;
+            this.lciBtnResetScan.CustomizationFormText = "layoutControlItem5";
+            this.lciBtnResetScan.Location = new System.Drawing.Point(588, 224);
+            this.lciBtnResetScan.MinSize = new System.Drawing.Size(93, 26);
+            this.lciBtnResetScan.Name = "lciBtnResetScan";
+            this.lciBtnResetScan.Size = new System.Drawing.Size(277, 182);
+            this.lciBtnResetScan.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lciBtnResetScan.TextSize = new System.Drawing.Size(0, 0);
+            this.lciBtnResetScan.TextVisible = false;
+            // 
+            // emptySpaceItem3
+            // 
+            this.emptySpaceItem3.AllowHotTrack = false;
+            this.emptySpaceItem3.Location = new System.Drawing.Point(388, 156);
+            this.emptySpaceItem3.Name = "emptySpaceItem3";
+            this.emptySpaceItem3.Size = new System.Drawing.Size(200, 24);
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem4
+            // 
+            this.emptySpaceItem4.AllowHotTrack = false;
+            this.emptySpaceItem4.Location = new System.Drawing.Point(141, 156);
+            this.emptySpaceItem4.Name = "emptySpaceItem4";
+            this.emptySpaceItem4.Size = new System.Drawing.Size(247, 24);
+            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // lciTbHerstelldatum
+            // 
+            this.lciTbHerstelldatum.Control = this.tbHerstelldatum;
+            this.lciTbHerstelldatum.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.lciTbHerstelldatum.CustomizationFormText = "Herstelldatum";
+            this.lciTbHerstelldatum.Location = new System.Drawing.Point(0, 180);
+            this.lciTbHerstelldatum.Name = "lciTbHerstelldatum";
+            this.lciTbHerstelldatum.Size = new System.Drawing.Size(282, 24);
+            this.lciTbHerstelldatum.Text = "Herstelldatum :";
+            this.lciTbHerstelldatum.TextSize = new System.Drawing.Size(75, 13);
+            // 
+            // lciTbVerfallsdatum
+            // 
+            this.lciTbVerfallsdatum.Control = this.tbVerfallsdatum;
+            this.lciTbVerfallsdatum.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.lciTbVerfallsdatum.CustomizationFormText = "Verfallsdatum :";
+            this.lciTbVerfallsdatum.Location = new System.Drawing.Point(0, 204);
+            this.lciTbVerfallsdatum.Name = "lciTbVerfallsdatum";
+            this.lciTbVerfallsdatum.Size = new System.Drawing.Size(282, 24);
+            this.lciTbVerfallsdatum.Text = "Verfallsdatum :";
+            this.lciTbVerfallsdatum.TextSize = new System.Drawing.Size(75, 13);
+            // 
+            // toolTipController11
+            // 
+            this.toolTipController11.Appearance.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController11.Appearance.Options.UseFont = true;
+            this.toolTipController11.IconSize = DevExpress.Utils.ToolTipIconSize.Large;
+            // 
+            // tbLand
+            // 
+            this.tbLand.Location = new System.Drawing.Point(91, 168);
+            this.tbLand.Name = "tbLand";
+            this.tbLand.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbLand.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.tbLand.Properties.MaxLength = 3;
+            this.tbLand.Size = new System.Drawing.Size(58, 20);
+            this.tbLand.StyleController = this.mainLayoutControl;
+            this.tbLand.TabIndex = 4;
+            this.tbLand.ToolTipController = this.toolTipController1;
             // 
             // keyboardControlNum
             // 
@@ -364,7 +652,7 @@
             // 
             // tbMenge2
             // 
-            this.tbMenge2.Location = new System.Drawing.Point(91, 216);
+            this.tbMenge2.Location = new System.Drawing.Point(91, 264);
             this.tbMenge2.Name = "tbMenge2";
             this.tbMenge2.Properties.Appearance.Options.UseTextOptions = true;
             this.tbMenge2.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -382,7 +670,7 @@
             // 
             // tbMenge1
             // 
-            this.tbMenge1.Location = new System.Drawing.Point(91, 192);
+            this.tbMenge1.Location = new System.Drawing.Point(91, 240);
             this.tbMenge1.Name = "tbMenge1";
             this.tbMenge1.Properties.Appearance.Options.UseTextOptions = true;
             this.tbMenge1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -427,80 +715,6 @@
             this.tbInput.InvalidValue += new DevExpress.XtraEditors.Controls.InvalidValueExceptionEventHandler(this.tbInput_InvalidValue);
             this.tbInput.Validating += new System.ComponentModel.CancelEventHandler(this.tbInput_Validating);
             // 
-            // lcArtikelnummer
-            // 
-            this.lcArtikelnummer.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lcArtikelnummer.Location = new System.Drawing.Point(91, 46);
-            this.lcArtikelnummer.Name = "lcArtikelnummer";
-            this.lcArtikelnummer.Size = new System.Drawing.Size(505, 13);
-            this.lcArtikelnummer.StyleController = this.mainLayoutControl;
-            this.lcArtikelnummer.TabIndex = 1;
-            this.lcArtikelnummer.Text = "Bezeichnung";
-            // 
-            // lcLager
-            // 
-            this.lcLager.Location = new System.Drawing.Point(91, 29);
-            this.lcLager.Name = "lcLager";
-            this.lcLager.Size = new System.Drawing.Size(27, 13);
-            this.lcLager.StyleController = this.mainLayoutControl;
-            this.lcLager.TabIndex = 0;
-            this.lcLager.Text = "Lager";
-            // 
-            // layoutControlGroup1
-            // 
-            this.layoutControlGroup1.CustomizationFormText = "layoutControlGroup1";
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.lciLcArtikelnummer,
-            this.lciLcLager,
-            this.lciTbInput,
-            this.lciTbMenge2,
-            this.lciTbMenge1,
-            this.sllMenge1,
-            this.sllMenge2,
-            this.lciTbCharge,
-            this.lciLbBenuzter,
-            this.emptySpaceItem1,
-            this.emptySpaceItem2,
-            this.layoutControlGroup2,
-            this.lciLcBezeichnung,
-            this.lciLcMengeGezaeht,
-            this.lciLcMengeGezaeht2,
-            this.lciLand,
-            this.lciTbAb1,
-            this.lciTbAb2,
-            this.lciTbAb3,
-            this.lciTbAb4,
-            this.lciBtnSpeichern,
-            this.lciBtnAbbruch,
-            this.lciBtnResetScan,
-            this.emptySpaceItem3,
-            this.emptySpaceItem4});
-            this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(885, 426);
-            this.layoutControlGroup1.TextVisible = false;
-            // 
-            // lciLcArtikelnummer
-            // 
-            this.lciLcArtikelnummer.Control = this.lcArtikelnummer;
-            this.lciLcArtikelnummer.CustomizationFormText = "Artikel Nr.:";
-            this.lciLcArtikelnummer.Location = new System.Drawing.Point(0, 34);
-            this.lciLcArtikelnummer.Name = "lciLcArtikelnummer";
-            this.lciLcArtikelnummer.Size = new System.Drawing.Size(588, 17);
-            this.lciLcArtikelnummer.Text = "Artikel Nr.:";
-            this.lciLcArtikelnummer.TextSize = new System.Drawing.Size(75, 13);
-            // 
-            // lciLcLager
-            // 
-            this.lciLcLager.Control = this.lcLager;
-            this.lciLcLager.CustomizationFormText = "Lagerfach:";
-            this.lciLcLager.Location = new System.Drawing.Point(0, 17);
-            this.lciLcLager.Name = "lciLcLager";
-            this.lciLcLager.Size = new System.Drawing.Size(588, 17);
-            this.lciLcLager.Text = "Lagerfach:";
-            this.lciLcLager.TextSize = new System.Drawing.Size(75, 13);
-            // 
             // lciTbInput
             // 
             this.lciTbInput.Control = this.tbInput;
@@ -515,7 +729,7 @@
             // 
             this.lciTbMenge2.Control = this.tbMenge2;
             this.lciTbMenge2.CustomizationFormText = "layoutControlItem6";
-            this.lciTbMenge2.Location = new System.Drawing.Point(0, 204);
+            this.lciTbMenge2.Location = new System.Drawing.Point(0, 252);
             this.lciTbMenge2.MaxSize = new System.Drawing.Size(237, 24);
             this.lciTbMenge2.MinSize = new System.Drawing.Size(237, 24);
             this.lciTbMenge2.Name = "lciTbMenge2";
@@ -528,7 +742,7 @@
             // 
             this.lciTbMenge1.Control = this.tbMenge1;
             this.lciTbMenge1.CustomizationFormText = "layoutControlItem5";
-            this.lciTbMenge1.Location = new System.Drawing.Point(0, 180);
+            this.lciTbMenge1.Location = new System.Drawing.Point(0, 228);
             this.lciTbMenge1.MaxSize = new System.Drawing.Size(237, 24);
             this.lciTbMenge1.MinSize = new System.Drawing.Size(237, 24);
             this.lciTbMenge1.Name = "lciTbMenge1";
@@ -536,26 +750,6 @@
             this.lciTbMenge1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lciTbMenge1.Text = "Menge 1:";
             this.lciTbMenge1.TextSize = new System.Drawing.Size(75, 13);
-            // 
-            // sllMenge1
-            // 
-            this.sllMenge1.AllowHotTrack = false;
-            this.sllMenge1.CustomizationFormText = "Stck";
-            this.sllMenge1.Location = new System.Drawing.Point(237, 180);
-            this.sllMenge1.Name = "sllMenge1";
-            this.sllMenge1.Size = new System.Drawing.Size(114, 24);
-            this.sllMenge1.Text = "Stck";
-            this.sllMenge1.TextSize = new System.Drawing.Size(75, 13);
-            // 
-            // sllMenge2
-            // 
-            this.sllMenge2.AllowHotTrack = false;
-            this.sllMenge2.CustomizationFormText = "Stck";
-            this.sllMenge2.Location = new System.Drawing.Point(237, 204);
-            this.sllMenge2.Name = "sllMenge2";
-            this.sllMenge2.Size = new System.Drawing.Size(114, 24);
-            this.sllMenge2.Text = "Stck";
-            this.sllMenge2.TextSize = new System.Drawing.Size(75, 13);
             // 
             // lciTbCharge
             // 
@@ -570,42 +764,6 @@
             this.lciTbCharge.Text = "Charge:";
             this.lciTbCharge.TextSize = new System.Drawing.Size(75, 13);
             // 
-            // lciLbBenuzter
-            // 
-            this.lciLbBenuzter.Control = this.lbBenuzter;
-            this.lciLbBenuzter.CustomizationFormText = "Benutzer:";
-            this.lciLbBenuzter.Location = new System.Drawing.Point(0, 0);
-            this.lciLbBenuzter.Name = "lciLbBenuzter";
-            this.lciLbBenuzter.Size = new System.Drawing.Size(588, 17);
-            this.lciLbBenuzter.Text = "Benutzer:";
-            this.lciLbBenuzter.TextSize = new System.Drawing.Size(75, 13);
-            // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 228);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(351, 24);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 252);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(351, 24);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // layoutControlGroup2
-            // 
-            this.layoutControlGroup2.GroupBordersVisible = false;
-            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.lciKeyboardControlNum});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 276);
-            this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.OptionsItemText.TextAlignMode = DevExpress.XtraLayout.TextAlignModeGroup.AlignLocal;
-            this.layoutControlGroup2.Size = new System.Drawing.Size(588, 130);
-            // 
             // lciKeyboardControlNum
             // 
             this.lciKeyboardControlNum.Control = this.keyboardControlNum;
@@ -615,37 +773,6 @@
             this.lciKeyboardControlNum.Size = new System.Drawing.Size(588, 130);
             this.lciKeyboardControlNum.TextSize = new System.Drawing.Size(0, 0);
             this.lciKeyboardControlNum.TextVisible = false;
-            // 
-            // lciLcBezeichnung
-            // 
-            this.lciLcBezeichnung.Control = this.lcBezeichnung;
-            this.lciLcBezeichnung.CustomizationFormText = "Bezeichnung:";
-            this.lciLcBezeichnung.Location = new System.Drawing.Point(0, 51);
-            this.lciLcBezeichnung.Name = "lciLcBezeichnung";
-            this.lciLcBezeichnung.Size = new System.Drawing.Size(588, 17);
-            this.lciLcBezeichnung.Text = "Bezeichnung:";
-            this.lciLcBezeichnung.TextSize = new System.Drawing.Size(75, 13);
-            // 
-            // lciLcMengeGezaeht
-            // 
-            this.lciLcMengeGezaeht.Control = this.lcMengeGezaeht;
-            this.lciLcMengeGezaeht.ControlAlignment = System.Drawing.ContentAlignment.TopRight;
-            this.lciLcMengeGezaeht.CustomizationFormText = "Bereits gezählt:";
-            this.lciLcMengeGezaeht.Location = new System.Drawing.Point(0, 68);
-            this.lciLcMengeGezaeht.Name = "lciLcMengeGezaeht";
-            this.lciLcMengeGezaeht.Size = new System.Drawing.Size(148, 40);
-            this.lciLcMengeGezaeht.Text = "Bereits gezählt:";
-            this.lciLcMengeGezaeht.TextSize = new System.Drawing.Size(75, 13);
-            // 
-            // lciLcMengeGezaeht2
-            // 
-            this.lciLcMengeGezaeht2.Control = this.lcMengeGezaeht2;
-            this.lciLcMengeGezaeht2.CustomizationFormText = "layoutControlItem8";
-            this.lciLcMengeGezaeht2.Location = new System.Drawing.Point(148, 68);
-            this.lciLcMengeGezaeht2.Name = "lciLcMengeGezaeht2";
-            this.lciLcMengeGezaeht2.Size = new System.Drawing.Size(440, 40);
-            this.lciLcMengeGezaeht2.TextSize = new System.Drawing.Size(0, 0);
-            this.lciLcMengeGezaeht2.TextVisible = false;
             // 
             // lciLand
             // 
@@ -711,57 +838,21 @@
             this.lciTbAb4.Text = "Abmassfeld 4:";
             this.lciTbAb4.TextSize = new System.Drawing.Size(75, 13);
             // 
-            // lciBtnSpeichern
+            // emptySpaceItem5
             // 
-            this.lciBtnSpeichern.Control = this.btnSpeichern;
-            this.lciBtnSpeichern.CustomizationFormText = "layoutControlItem12";
-            this.lciBtnSpeichern.Location = new System.Drawing.Point(588, 0);
-            this.lciBtnSpeichern.MinSize = new System.Drawing.Size(60, 26);
-            this.lciBtnSpeichern.Name = "lciBtnSpeichern";
-            this.lciBtnSpeichern.Size = new System.Drawing.Size(277, 135);
-            this.lciBtnSpeichern.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.lciBtnSpeichern.TextSize = new System.Drawing.Size(0, 0);
-            this.lciBtnSpeichern.TextVisible = false;
+            this.emptySpaceItem5.AllowHotTrack = false;
+            this.emptySpaceItem5.Location = new System.Drawing.Point(316, 252);
+            this.emptySpaceItem5.Name = "emptySpaceItem5";
+            this.emptySpaceItem5.Size = new System.Drawing.Size(35, 24);
+            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // lciBtnAbbruch
+            // emptySpaceItem6
             // 
-            this.lciBtnAbbruch.Control = this.btnAbbruch;
-            this.lciBtnAbbruch.CustomizationFormText = "layoutControlItem13";
-            this.lciBtnAbbruch.Location = new System.Drawing.Point(588, 135);
-            this.lciBtnAbbruch.MinSize = new System.Drawing.Size(139, 26);
-            this.lciBtnAbbruch.Name = "lciBtnAbbruch";
-            this.lciBtnAbbruch.Size = new System.Drawing.Size(277, 135);
-            this.lciBtnAbbruch.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.lciBtnAbbruch.TextSize = new System.Drawing.Size(0, 0);
-            this.lciBtnAbbruch.TextVisible = false;
-            // 
-            // lciBtnResetScan
-            // 
-            this.lciBtnResetScan.Control = this.btnResetScan;
-            this.lciBtnResetScan.CustomizationFormText = "layoutControlItem5";
-            this.lciBtnResetScan.Location = new System.Drawing.Point(588, 270);
-            this.lciBtnResetScan.MinSize = new System.Drawing.Size(93, 26);
-            this.lciBtnResetScan.Name = "lciBtnResetScan";
-            this.lciBtnResetScan.Size = new System.Drawing.Size(277, 136);
-            this.lciBtnResetScan.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.lciBtnResetScan.TextSize = new System.Drawing.Size(0, 0);
-            this.lciBtnResetScan.TextVisible = false;
-            // 
-            // emptySpaceItem3
-            // 
-            this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(364, 156);
-            this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(224, 24);
-            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem4
-            // 
-            this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(141, 156);
-            this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(223, 24);
-            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.emptySpaceItem6.AllowHotTrack = false;
+            this.emptySpaceItem6.Location = new System.Drawing.Point(316, 228);
+            this.emptySpaceItem6.Name = "emptySpaceItem6";
+            this.emptySpaceItem6.Size = new System.Drawing.Size(35, 24);
+            this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
             // MainEditForm
             // 
@@ -780,6 +871,30 @@
             this.Text = "Erfassung";
             ((System.ComponentModel.ISupportInitialize)(this.mainLayoutControl)).EndInit();
             this.mainLayoutControl.ResumeLayout(false);
+            this.mainLayoutControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbHerstelldatum.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbHerstelldatum.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbVerfallsdatum.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbVerfallsdatum.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciLcArtikelnummer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciLcLager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sllMenge1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sllMenge2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciLbBenuzter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciLcBezeichnung)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciLcMengeGezaeht)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciLcMengeGezaeht2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBtnSpeichern)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBtnAbbruch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBtnResetScan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciTbHerstelldatum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciTbVerfallsdatum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLand.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAb4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAb3.Properties)).EndInit();
@@ -789,33 +904,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbMenge1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbCharge.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbInput.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciLcArtikelnummer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciLcLager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbMenge2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbMenge1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sllMenge1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sllMenge2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbCharge)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciLbBenuzter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciKeyboardControlNum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciLcBezeichnung)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciLcMengeGezaeht)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciLcMengeGezaeht2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciLand)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbAb1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbAb2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbAb3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciTbAb4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBtnSpeichern)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBtnAbbruch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBtnResetScan)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -870,5 +970,12 @@
         private DevExpress.XtraLayout.LayoutControlItem lciLand;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private DevExpress.XtraEditors.DateEdit tbHerstelldatum;
+        private DevExpress.XtraEditors.DateEdit tbVerfallsdatum;
+        private DevExpress.XtraLayout.LayoutControlItem lciTbHerstelldatum;
+        private DevExpress.XtraLayout.LayoutControlItem lciTbVerfallsdatum;
+        private DevExpress.Utils.ToolTipController toolTipController11;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
     }
 }

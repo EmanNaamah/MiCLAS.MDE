@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="MiCLAS.MDE.exe.manifest" size="17485">
+    <dependentAssembly dependencyType="install" codebase="MiCLAS.MDE.exe.manifest" size="17412">
       <assemblyIdentity name="MiCLAS.MDE.exe" version="1.0.0.13" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Mzr7rO2Z3vKNI3cFgMsmolb6Y3s6KxBAvAPu6IXOn/o=</dsig:DigestValue>
+        <dsig:DigestValue>zrjG+fPtufyyAc1oMW2y7Hvyd/ZNhjfI+Wi+6tIndyE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -67,14 +67,14 @@ namespace MiCLAS.MDE
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(284, 264);
+            this.panelControl1.Size = new System.Drawing.Size(270, 258);
             this.panelControl1.TabIndex = 2;
             // 
             // BaseDialog
             // 
             this.AcceptButton = this.btnOK;
             this.CancelButton = this.btnAbbruch;
-            this.ClientSize = new System.Drawing.Size(284, 264);
+            this.ClientSize = new System.Drawing.Size(270, 258);
             this.Controls.Add(this.panelControl1);
             this.DoubleBuffered = true;
             this.HelpButton = true;
