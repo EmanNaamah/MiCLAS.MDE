@@ -124,6 +124,7 @@
     <Compile Include="Base\Defines.cs" />
     <Compile Include="Base\ExtensionUtil.cs" />
     <Compile Include="Base\GS1Parser.cs" />
+    <Compile Include="Base\InputData.cs" />
     <Compile Include="Base\MessageBoxEx.cs" />
     <Compile Include="Forms\LagerDlg.cs">
       <SubType>Form</SubType>
@@ -145,6 +146,7 @@
     </Compile>
     <Compile Include="Forms\SeriennummernForm.Designer.cs">
       <DependentUpon>SeriennummernForm.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Keyboard\KeyBoardRenderer.cs" />
     <Compile Include="Keyboard\Keyboard.cs" />

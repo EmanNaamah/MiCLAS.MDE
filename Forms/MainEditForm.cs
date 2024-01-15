@@ -498,7 +498,6 @@ namespace MiCLAS.MDE
                             sf.Total = 1;
                             SaveDaten(this.Seriennummer);
 
-                           
                         }
                         else 
                         {
@@ -581,11 +580,11 @@ namespace MiCLAS.MDE
             }
             if (!string.IsNullOrEmpty(this.Herstelldatum))
             {
-                herstelldatum = DateTime.Parse(this.Herstelldatum).ToString("yyyy-MM-dd HH:mm:ss");
+                herstelldatum = DateTime.Parse(this.Herstelldatum).ToString("dd.MM.yyyy HH:mm:ss");
             }
             if (!string.IsNullOrEmpty(this.Verfallsdatum))
             {
-                verfallsdatum = DateTime.Parse(this.Verfallsdatum).ToString("yyyy-MM-dd HH:mm:ss");
+                verfallsdatum = DateTime.Parse(this.Verfallsdatum).ToString("dd.MM.yyyy HH:mm:ss");
             }
 
             strSQL += this.Benutzernummer + ",";
@@ -671,136 +670,57 @@ namespace MiCLAS.MDE
 
         private void tbInput_Validating(object sender, CancelEventArgs e)
         {
-            bool result = false;
-            string input = this.tbInput.EditValue.ToString();
             bool bCharge = false;
             bool bLand = false;
-            bool bHerstelldatum = false;
-            bool bVervallsdatum = false;
-            bool isGS1 = false;
+            bool result = false;
+            string input = this.tbInput.EditValue.ToString();
+           
             if (input != String.Empty)
             {
-                using (OleDbConnection conn = new OleDbConnection(PublicAttributes.DataConnection.ConnectionString))
+
+                InputData input1 = new InputData();
+                if (input1.Istvalid(input, _DefaultInventurFilter))
                 {
-                    try
-                    {
-                        conn.Open();
-                        string strSQL = "SELECT * FROM MDEArtikel WHERE " + String.Format(_DefaultInventurFilter, input);
-
-                        using (OleDbCommand cmd = new OleDbCommand(strSQL, conn))
-                        using (OleDbDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
-                        {
-                            if (reader.HasRows && reader.Read())
-                            {
-                                this.Artikelnummer = reader.GetStringValue("Artikelnummer");
-                                this.ArtBezeichnung = reader.GetStringValue("Bezeichnung1");
-                                this.Menge1Text = reader.GetStringValue("Mengeneinheit1");
-                                this.Menge2Text = reader.GetStringValue("Mengeneinheit2");
-                                this.Abmassfeld1Text = reader.GetStringValue("Abmassfeld1");
-                                this.Abmassfeld2Text = reader.GetStringValue("Abmassfeld2");
-                                this.Abmassfeld3Text = reader.GetStringValue("Abmassfeld3");
-                                this.Abmassfeld4Text = reader.GetStringValue("Abmassfeld4");
-                                this._Seriennummer = reader.GetBoolValue("Seriennummernpflichtig");
-                                bVervallsdatum = reader.GetBoolValue("Verfallsdatumpflichtig");
-                                bHerstelldatum = reader.GetBoolValue("Herstelldatumpflichtig");
-                                bCharge = reader.GetBoolValue("Chargenpflichtig");
-                                bLand = reader.GetBoolValue("Ursprungslandpflichtig");
-                                result = true;
-                            }
-                            else
-                                isGS1 = true;
-                        }
-                        if (isGS1)
-                        {
-                            string GS1 = input.Replace(@"\F".ToString(), ",");
-                            List<String> GS1ToList = GS1.Split(',').ToList();
-                            List<String> ResultGs1List = new List<string>();
-
-                            for (int i = 0; i < GS1ToList.Count; i++)
-                            {
-
-                                Dictionary<GS1Parser.AII, string> parsedstring = GS1Parser.Parse(GS1ToList[i]);
-
-                                ResultGs1List.Add(string.Join(", ", parsedstring.Select(m => m.Key + "," + m.Value)));
-
-                            }
-                            if (ResultGs1List.Count > 0)
-                            {
-                                if (ResultGs1List.FirstOrDefault(x => x.Contains("91")) != null)
-                                    this.Artikelnummer = ResultGs1List.FirstOrDefault(x => x.Contains("91")).ToString().Split(new char[] { ',' }, 2)[1];
-                                if (ResultGs1List.FirstOrDefault(x => x.Contains("10")) != null)
-                                    this.Charge = ResultGs1List.FirstOrDefault(x => x.Contains("10")).ToString().Split(new char[] { ',' }, 2)[1];
-
-                                if (ResultGs1List.FirstOrDefault(x => x.Contains("11")) != null)
-                                {
-                                    this.Herstelldatum = ResultGs1List.FirstOrDefault(x => x.Contains("11")).ToString().Split(new char[] { ',' }, 2)[1];
-                                    DateTime dt = DateTime.ParseExact(this.Herstelldatum, "yyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                                    string outp = dt.ToString("dd-MM-yyyy HH:mm:ss");
-                                    this.Herstelldatum = outp;
-                                }
-
-                                if (ResultGs1List.FirstOrDefault(x => x.Contains("17")) != null)
-                                {
-                                    this.Verfallsdatum = ResultGs1List.FirstOrDefault(x => x.Contains("17")).ToString().Split(new char[] { ',' }, 2)[1];
-                                    DateTime dt = DateTime.ParseExact(this.Verfallsdatum, "yyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                                    string outp = dt.ToString("dd-MM-yyyy HH:mm:ss");
-                                    this.Verfallsdatum = outp;
-                                }
-
-                                if (ResultGs1List.FirstOrDefault(x => x.Contains("422")) != null)
-                                    this.Ursprungsland = ResultGs1List.FirstOrDefault(x => x.Contains("422")).ToString().Split(new char[] { ',' }, 2)[1];
-
-                                if (ResultGs1List.FirstOrDefault(x => x.Contains("21")) != null)
-                                {
-                                    this.Seriennummer = ResultGs1List.FirstOrDefault(x => x.Contains("21")).ToString().Split(new char[] { ',' }, 2)[1];
-                                    this.Menge1 = 1;
-
-                                }
-
-
-                                if (Artikelnummer != "")
-                                {
-                                    conn.Open();
-                                    string strSQL1 = "SELECT * FROM MDEArtikel WHERE " + String.Format(_DefaultInventurFilter, Artikelnummer);
-
-                                    using (OleDbCommand cmd = new OleDbCommand(strSQL1, conn))
-                                    using (OleDbDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
-                                    {
-                                        if (reader.HasRows && reader.Read())
-                                        {
-                                            this.Artikelnummer = reader.GetStringValue("Artikelnummer");
-                                            this.ArtBezeichnung = reader.GetStringValue("Bezeichnung1");
-                                            this.Menge1Text = reader.GetStringValue("Mengeneinheit1");
-                                            this.Menge2Text = reader.GetStringValue("Mengeneinheit2");
-                                            this.Abmassfeld1Text = reader.GetStringValue("Abmassfeld1");
-                                            this.Abmassfeld2Text = reader.GetStringValue("Abmassfeld2");
-                                            this.Abmassfeld3Text = reader.GetStringValue("Abmassfeld3");
-                                            this.Abmassfeld4Text = reader.GetStringValue("Abmassfeld4");
-                                            this._Seriennummer = reader.GetBoolValue("Seriennummernpflichtig");
-                                            bVervallsdatum = reader.GetBoolValue("Verfallsdatumpflichtig");
-                                            bHerstelldatum = reader.GetBoolValue("Herstelldatumpflichtig");
-                                            bCharge = reader.GetBoolValue("Chargenpflichtig");
-                                            bLand = reader.GetBoolValue("Ursprungslandpflichtig");
-                                            result = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        XtraMessageBox.Show("Fehler beim Öffnen der Datenbank");
-                    }
-                    finally
-                    {
-                        if (conn.State != ConnectionState.Closed)
-                        {
-                            conn.Close();
-                        }
-                    }
+                    this.Artikelnummer = input1.ArtikelnummerInput;
+                    this.ArtBezeichnung = input1.ArtBezeichnungInput;
+                    this.Menge1Text = input1.Menge1TextInput;
+                    this.Menge2Text = input1.Menge2TextInput; ;
+                    this.Abmassfeld1Text = input1.Abmassfeld1TextInput;
+                    this.Abmassfeld2Text = input1.Abmassfeld2TextInput;
+                    this.Abmassfeld3Text = input1.Abmassfeld3TextInput;
+                    this.Abmassfeld4Text = input1.Abmassfeld4TextInput;
+                    this.Seriennummer = input1.Seriennummer;
+                    this._Seriennummer = input1._SeriennummerInput;
+                    bCharge = input1.bCharge;
+                    bLand = input1.bLand;
+                    result = true;
                 }
+                else if (input1.isGs1(input))
+                    if (input1.Istvalid(input1.ArtikelnummerInput, _DefaultInventurFilter))
+                    {
+                        this.Artikelnummer = input1.ArtikelnummerInput;
+                        this.ArtBezeichnung = input1.ArtBezeichnungInput;
+                        this.Menge1Text = input1.Menge1TextInput;
+                        this.Menge2Text = input1.Menge2TextInput; ;
+                        this.Abmassfeld1Text = input1.Abmassfeld1TextInput; ;
+                        this.Abmassfeld2Text = input1.Abmassfeld2TextInput; ;
+                        this.Abmassfeld3Text = input1.Abmassfeld3TextInput; ;
+                        this.Abmassfeld4Text = input1.Abmassfeld4TextInput; ;
+                        this.Ursprungsland = input1.UrsprungslandInput;
+                        this.Herstelldatum = input1.HerstelldatumInput;
+                        this.Verfallsdatum = input1.VerfallsdatumInput;
+                        this.Seriennummer = input1.Seriennummer;
+                        this.Charge = input1.ChargeInput;
+                        this.Menge1 = input1.Menge1;
+                        this._Seriennummer = input1._SeriennummerInput;
+                        //bVervallsdatum = input1.bVervallsdatum;
+                        //bHerstelldatum = input1.bHerstelldatum;
+                        bCharge = input1.bCharge;
+                        bLand = input1.bLand;
+                        result = true;
+                    }
 
+               
                 bool bShow = this.Abmassfeld1Text != String.Empty;
 
                 this.lciTbAb1.ContentVisible = bShow;
@@ -832,11 +752,14 @@ namespace MiCLAS.MDE
                 if (!string.IsNullOrEmpty(this.Seriennummer))
                     this.lciTbMenge1.Enabled = false;
                 else this.lciTbMenge1.Enabled = true;
-                bShow = bHerstelldatum;
-                this.lciTbHerstelldatum.ContentVisible = bShow;
+         
+               if(bLand || bCharge)
+                {
+                    this.lciTbHerstelldatum.ContentVisible = bShow;
+                    this.lciTbVerfallsdatum.ContentVisible = bShow;
+                }
+       
 
-                bShow = bVervallsdatum;
-                this.lciTbVerfallsdatum.ContentVisible = bShow;
                 this.InputField = input;
 
                 if (result)

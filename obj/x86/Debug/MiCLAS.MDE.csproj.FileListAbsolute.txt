@@ -53,6 +53,7 @@ C:\ERP4all\Eman\MiCLAS.MDE_Eman\MiCLAS.MDE\obj\x86\Debug\MiCLAS.MDE.exe.manifest
 C:\ERP4all\Eman\MiCLAS.MDE_Eman\MiCLAS.MDE\obj\x86\Debug\MiCLAS.MDE.application
 C:\ERP4all\Eman\MiCLAS.MDE_Eman\MiCLAS.MDE\obj\x86\Debug\MiCLAS.MDE.exe
 C:\ERP4all\Eman\MiCLAS.MDE_Eman\MiCLAS.MDE\obj\x86\Debug\MiCLAS.MDE.pdb
+C:\ERPGit\MiCLAS.MDE\bin\Debug\Forms\SeriennummernForm.Designer.cs
 C:\ERPGit\MiCLAS.MDE\bin\Debug\MiCLAS.MDE.exe.config
 C:\ERPGit\MiCLAS.MDE\bin\Debug\MiCLAS.MDE.exe.manifest
 C:\ERPGit\MiCLAS.MDE\bin\Debug\MiCLAS.MDE.application
