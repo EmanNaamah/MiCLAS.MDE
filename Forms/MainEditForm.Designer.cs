@@ -24,6 +24,8 @@
                 this.tbMenge2.Leave -= new System.EventHandler(this.tbField_Validated);
                 this.tbMenge1.InvalidValue -= new DevExpress.XtraEditors.Controls.InvalidValueExceptionEventHandler(this.tbInput_InvalidValue);
                 this.tbMenge1.Validating -= new System.ComponentModel.CancelEventHandler(this.tbField_Validating);
+                this.tbLand.InvalidValue -= new DevExpress.XtraEditors.Controls.InvalidValueExceptionEventHandler(this.tbInput_InvalidValue);
+                this.tbLand.Validating -= new System.ComponentModel.CancelEventHandler(this.tbField_Validating);
                 this.tbMenge1.Leave -= new System.EventHandler(this.tbField_Validated);
                 this.tbCharge.InvalidValue -= new DevExpress.XtraEditors.Controls.InvalidValueExceptionEventHandler(this.tbInput_InvalidValue);
                 this.tbCharge.Validating -= new System.ComponentModel.CancelEventHandler(this.tbField_Validating);
@@ -199,6 +201,9 @@
             this.tbLand.StyleController = this.mainLayoutControl;
             this.tbLand.TabIndex = 4;
             this.tbLand.ToolTipController = this.toolTipController1;
+            this.tbLand.Leave += new System.EventHandler(this.tbField_Validated);
+            this.tbLand.Validating += new System.ComponentModel.CancelEventHandler(this.tbField_Validating);
+            this.tbLand.InvalidValue += new DevExpress.XtraEditors.Controls.InvalidValueExceptionEventHandler(this.tbInput_InvalidValue);
             // 
             // toolTipController1
             // 

@@ -18,7 +18,6 @@ namespace MiCLAS.MDE.Base
         public string Abmassfeld2TextInput { get; set; }
         public string Abmassfeld3TextInput { get; set; }
         public string Abmassfeld4TextInput { get; set; }
-
         public bool _SeriennummerInput { get; set; } = false;
         public bool bCharge { get; set; } = false;
         public bool bLand { get; set; } = false;
@@ -33,7 +32,7 @@ namespace MiCLAS.MDE.Base
 
         public bool Istvalid(string input, string _DefaultInventurFilter)
         {
-           if (input != String.Empty)
+            if (input != String.Empty)
             {
                 using (OleDbConnection conn = new OleDbConnection(PublicAttributes.DataConnection.ConnectionString))
                 {
@@ -79,60 +78,71 @@ namespace MiCLAS.MDE.Base
                 }
 
             }
-            
-                return ResultInput;
+
+            return ResultInput;
         }
         public bool isGs1(string gs1)
         {
-            List<String> GS1ToList = gs1.Replace(@"\F".ToString(), ",").Split(',').ToList();
-            List<String> ResultGs1List = new List<string>();
-
-            for (int i = 0; i < GS1ToList.Count; i++)
+            try
             {
+                List<String> GS1ToList = gs1.Replace(@"\F".ToString(), ",").Split(',').ToList();
+                List<String> ResultGs1List = new List<string>();
 
-                Dictionary<GS1Parser.AII, string> parsedstring = GS1Parser.Parse(GS1ToList[i]);
+                for (int i = 0; i < GS1ToList.Count; i++)
+                {
 
-                ResultGs1List.Add(string.Join(", ", parsedstring.Select(m => m.Key + "," + m.Value)));
+                    Dictionary<GS1Parser.AII, string> parsedstring = GS1Parser.Parse(GS1ToList[i]);
 
+                    ResultGs1List.Add(string.Join(", ", parsedstring.Select(m => m.Key + "," + m.Value)));
+
+                }
+                if (ResultGs1List.Count > 0)
+                {
+                    if (ResultGs1List.FirstOrDefault(x => x.Contains("91")) != null)//change search filter he find all with this number connt use ble.10 artikelnr
+                        ArtikelnummerInput = ResultGs1List.FirstOrDefault(x => x.Contains("91")).ToString().Split(new char[] { ',' }, 2)[1];
+                    if (ResultGs1List.FirstOrDefault(x => x.Contains("10")) != null)
+                        ChargeInput = ResultGs1List.FirstOrDefault(x => x.Contains("10")).ToString().Split(new char[] { ',' }, 2)[1];
+
+                    if (ResultGs1List.FirstOrDefault(x => x.Contains("11")) != null)
+                    {
+                        HerstelldatumInput = ResultGs1List.FirstOrDefault(x => x.Contains("11")).ToString().Split(new char[] { ',' }, 2)[1];
+                        DateTime dt = DateTime.ParseExact(HerstelldatumInput, "yyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                        string outp = dt.ToString("dd-MM-yyyy ");
+                        HerstelldatumInput = outp;
+                    }
+
+                    if (ResultGs1List.FirstOrDefault(x => x.Contains("17")) != null)
+                    {
+                        VerfallsdatumInput = ResultGs1List.FirstOrDefault(x => x.Contains("17")).ToString().Split(new char[] { ',' }, 2)[1];
+                        DateTime dt = DateTime.ParseExact(VerfallsdatumInput, "yyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                        string outp = dt.ToString("dd-MM-yyyy ");
+                        VerfallsdatumInput = outp;
+                    }
+
+                    if (ResultGs1List.FirstOrDefault(x => x.Contains("422")) != null)
+                        UrsprungslandInput = ResultGs1List.FirstOrDefault(x => x.Contains("422")).ToString().Split(new char[] { ',' }, 2)[1];
+
+                    if (ResultGs1List.FirstOrDefault(x => x.Contains("21")) != null)
+                    {
+                        Seriennummer = ResultGs1List.FirstOrDefault(x => x.Contains("21")).ToString().Split(new char[] { ',' }, 2)[1];
+                        Menge1 = 1;
+
+                    }
+
+
+                    return (!string.IsNullOrEmpty(ArtikelnummerInput));
+                }
+                else
+                    return false;
             }
-            if (ResultGs1List.Count > 0)
+            catch
             {
-                if (ResultGs1List.FirstOrDefault(x => x.Contains("91")) != null)//change search filter he find all with this number connt use ble.10 artikelnr
-                    ArtikelnummerInput = ResultGs1List.FirstOrDefault(x => x.Contains("91")).ToString().Split(new char[] { ',' }, 2)[1];
-                if (ResultGs1List.FirstOrDefault(x => x.Contains("10")) != null)
-                    ChargeInput = ResultGs1List.FirstOrDefault(x => x.Contains("10")).ToString().Split(new char[] { ',' }, 2)[1];
-
-                if (ResultGs1List.FirstOrDefault(x => x.Contains("11")) != null)
-                {
-                    HerstelldatumInput= ResultGs1List.FirstOrDefault(x => x.Contains("11")).ToString().Split(new char[] { ',' }, 2)[1];
-                    DateTime dt = DateTime.ParseExact(HerstelldatumInput, "yyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                    string outp = dt.ToString("dd-MM-yyyy ");
-                    HerstelldatumInput = outp;
-                }
-
-                if (ResultGs1List.FirstOrDefault(x => x.Contains("17")) != null)
-                {
-                    VerfallsdatumInput = ResultGs1List.FirstOrDefault(x => x.Contains("17")).ToString().Split(new char[] { ',' }, 2)[1];
-                    DateTime dt = DateTime.ParseExact(VerfallsdatumInput, "yyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                    string outp = dt.ToString("dd-MM-yyyy ");
-                    VerfallsdatumInput = outp;
-                }
-
-                if (ResultGs1List.FirstOrDefault(x => x.Contains("422")) != null)
-                    UrsprungslandInput = ResultGs1List.FirstOrDefault(x => x.Contains("422")).ToString().Split(new char[] { ',' }, 2)[1];
-
-                if (ResultGs1List.FirstOrDefault(x => x.Contains("21")) != null)
-                {
-                    Seriennummer = ResultGs1List.FirstOrDefault(x => x.Contains("21")).ToString().Split(new char[] { ',' }, 2)[1];
-                    Menge1 = 1;
-
-                }
+                XtraMessageBox.Show("Gs1 is not correct");
+                return false;
+            }
 
 
-                return (!string.IsNullOrEmpty(ArtikelnummerInput));
-            }else
-            return false;
+
         }
-       
     }
 }

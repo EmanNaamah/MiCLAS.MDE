@@ -300,7 +300,7 @@ namespace MiCLAS.MDE
 
 
 
-                dtInventur.DefaultView.Sort = "LagerGruppe,Lagerort,Magazin,Artikelnummer,Charge,Seriennummer,Menge1,Menge2,Abmassfeld1,Abmassfeld2,Abmassfeld3,Abmassfeld4";
+                dtInventur.DefaultView.Sort = "LagerGruppe,Lagerort,Magazin,Artikelnummer,Charge,Seriennummer,Menge1,Menge2,Abmassfeld1,Abmassfeld2,Abmassfeld3,Abmassfeld4,Herstelldatum, Verfallsdatum";
 
                 strExportName = Path.Combine(Application.StartupPath, "Export", "INV" + strGeraet + DateTime.Now.ToString("yyyyMMddhhmmss") + ".DAT");
 
@@ -323,6 +323,8 @@ namespace MiCLAS.MDE
                     string Lagerort = String.Empty;
                     string Magazin = String.Empty;
                     string Artikelnummer = String.Empty;
+                    string Herstelldatum = string.Empty;
+                    string verfallsdatum = string.Empty;
 
                     double Menge1 = 0.0;
                     double Menge2 = 0.0;
@@ -341,7 +343,8 @@ namespace MiCLAS.MDE
                     Lagerort = rowInv.GetStringValue("Lagerort");
                     Magazin = rowInv.GetStringValue("Magazin");
                     Artikelnummer = rowInv.GetStringValue("Artikelnummer");
-
+                
+                
                     Menge1 = rowInv.GetDoubleValue("Menge1");
                     Menge2 = rowInv.GetDoubleValue("Menge2");
                     Abmassfeld1 = rowInv.GetDoubleValue("Abmassfeld1");
@@ -356,6 +359,17 @@ namespace MiCLAS.MDE
                         Datum = rowInv.GetDateValue("Datum").ToString("yyyyMMddHHmmss");
                     else
                         Datum = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+                    if (!rowInv.IsDateNull("Verfallsdatum"))
+                        verfallsdatum = rowInv.GetDateValue("verfallsdatum").ToString("yyyyMMddHHmmss");
+                    else
+                        verfallsdatum = "";
+
+
+                    if (!rowInv.IsDateNull("Verfallsdatum"))
+                        Herstelldatum = rowInv.GetDateValue("Herstelldatum").ToString("yyyyMMddHHmmss");
+                    else
+                        Herstelldatum = "";
 
                     sbSatz.Clear();
                     sbSatz.Append(Benutzernummer);
@@ -389,8 +403,16 @@ namespace MiCLAS.MDE
                         sbSatz.Append(Abmassfeld4.ToString("N3", CultureInfo.InvariantCulture).Replace(",", ""));                    
                     sbSatz.Append(";");
 
-                    
-
+                    if (!String.IsNullOrEmpty(Herstelldatum))
+                    {
+                        sbSatz.Append(Herstelldatum);
+                        sbSatz.Append(";");
+                    }
+                    if (!String.IsNullOrEmpty(verfallsdatum))
+                    {
+                        sbSatz.Append(verfallsdatum);
+                        sbSatz.Append(";");
+                    }
                     sbSatz.Append(Seriennummer);
                     sbSatz.Append(";");
                     
