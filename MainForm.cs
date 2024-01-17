@@ -359,17 +359,15 @@ namespace MiCLAS.MDE
                         Datum = rowInv.GetDateValue("Datum").ToString("yyyyMMddHHmmss");
                     else
                         Datum = DateTime.Now.ToString("yyyyMMddHHmmss");
-
-                    if (!rowInv.IsDateNull("Verfallsdatum"))
-                        verfallsdatum = rowInv.GetDateValue("verfallsdatum").ToString("yyyyMMddHHmmss");
-                    else
-                        verfallsdatum = "";
-
-
-                    if (!rowInv.IsDateNull("Verfallsdatum"))
+                    if (!rowInv.IsDateNull("Herstelldatum"))
                         Herstelldatum = rowInv.GetDateValue("Herstelldatum").ToString("yyyyMMddHHmmss");
                     else
                         Herstelldatum = "";
+
+                    if (!rowInv.IsDateNull("Verfallsdatum"))
+                        verfallsdatum = rowInv.GetDateValue("Verfallsdatum").ToString("yyyyMMddHHmmss");
+                    else
+                        verfallsdatum = "";
 
                     sbSatz.Clear();
                     sbSatz.Append(Benutzernummer);

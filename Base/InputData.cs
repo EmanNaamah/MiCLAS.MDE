@@ -125,7 +125,7 @@ namespace MiCLAS.MDE.Base
                     if (ResultGs1List.FirstOrDefault(x => x.Contains("21")) != null)
                     {
                         Seriennummer = ResultGs1List.FirstOrDefault(x => x.Contains("21")).ToString().Split(new char[] { ',' }, 2)[1];
-                        Menge1 = 1;
+                        //Menge1 = 1;
 
                     }
 

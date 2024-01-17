@@ -176,8 +176,6 @@ namespace MiCLAS.MDE
             set { _Herstelldatum = value; NotifyPropertyChanged("Herstelldatum"); }
         }
 
-        
-
         DateTime _Verfallsdatum = DateTime.Now;
 
         public DateTime Verfallsdatum
@@ -577,8 +575,12 @@ namespace MiCLAS.MDE
             strSQL += "'" + this.Charge + "',";
             strSQL += "'" + this.Ursprungsland + "',";
             strSQL += "'" + strSeriennummer + "',";
-            strSQL += "'" + this.Herstelldatum + "',";
-            strSQL += "'" + this.Verfallsdatum + "')";
+            if (this.lciTbHerstelldatum.ContentVisible)
+                strSQL += "'" + this.Herstelldatum.ToString("MM.dd.yyyy") + "',";
+            else strSQL += "'" + " 00:0:00" + "',";
+            if (this.lciTbVerfallsdatum.ContentVisible)
+                strSQL += "'" + this.Verfallsdatum.ToString("MM.dd.yyyy") + "')";
+            else  strSQL += "'" + " 00:0:00" + "')";
 
             using (OleDbConnection conn = new OleDbConnection(PublicAttributes.DataConnection.ConnectionString))
             {
@@ -681,24 +683,25 @@ namespace MiCLAS.MDE
                         this.Abmassfeld2Text = input1.Abmassfeld2TextInput;
                         this.Abmassfeld3Text = input1.Abmassfeld3TextInput;
                         this.Abmassfeld4Text = input1.Abmassfeld4TextInput;
-                        if(bLand)
-                        this.Ursprungsland = input1.UrsprungslandInput;
-                        if(this._Seriennummer)
-                         this.Seriennummer = input1.Seriennummer;
-                        if(bCharge)
-                        this.Charge = input1.ChargeInput;
+                        this._Seriennummer = input1._SeriennummerInput;
+                        bCharge = input1.bCharge;
+                        bLand = input1.bLand;
+                        if (bLand)
+                            this.Ursprungsland = input1.UrsprungslandInput;
+                        if (this._Seriennummer)
+                            this.Seriennummer = input1.Seriennummer;
+                        if (bCharge)
+                            this.Charge = input1.ChargeInput;
                         this.Menge1 = input1.Menge1;
                         if (!string.IsNullOrEmpty(input1.HerstelldatumInput))
                             this.Herstelldatum = DateTime.Parse(input1.HerstelldatumInput);
                         if (!string.IsNullOrEmpty(input1.VerfallsdatumInput))
                             this.Verfallsdatum = DateTime.Parse(input1.VerfallsdatumInput);
-                        this._Seriennummer = input1._SeriennummerInput;
-                        bCharge = input1.bCharge;
-                        bLand = input1.bLand;
+                       
                         result = true;
                     }
 
-               
+
                 bool bShow = this.Abmassfeld1Text != String.Empty;
 
                 this.lciTbAb1.ContentVisible = bShow;
@@ -728,7 +731,10 @@ namespace MiCLAS.MDE
 
                 this.lciLand.ContentVisible = bShow;
                 if (!string.IsNullOrEmpty(this.Seriennummer))
+                {
                     this.lciTbMenge1.Enabled = false;
+                    this.Menge1 = 1;
+                }
                 else this.lciTbMenge1.Enabled = true;
          
                if(bLand || bCharge)
