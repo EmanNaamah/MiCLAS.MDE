@@ -1,20 +1,14 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraLayout;
+using MiCLAS.MDE.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using DevComponents.DotNetBar.Keyboard;
-using MiCLAS.MDE.Base;
-using System.Data.SqlClient;
 using System.Data.OleDb;
+using System.Drawing;
 using System.Globalization;
-using System.Collections.Specialized;
-using DevExpress.XtraLayout;
+using System.Windows.Forms;
 
 namespace MiCLAS.MDE
 {
@@ -168,17 +162,17 @@ namespace MiCLAS.MDE
             get { return _Abmassfeld4Text; }
             set { _Abmassfeld4Text = value; NotifyPropertyChanged("Abmassfeld4Text"); }
         }
-        DateTime _Herstelldatum = DateTime.Now;
+        string _Herstelldatum = String.Empty;
 
-        public DateTime Herstelldatum
+        public string Herstelldatum
         {
             get { return _Herstelldatum; }
             set { _Herstelldatum = value; NotifyPropertyChanged("Herstelldatum"); }
         }
 
-        DateTime _Verfallsdatum = DateTime.Now;
+        string _Verfallsdatum = String.Empty;
 
-        public DateTime Verfallsdatum
+        public string Verfallsdatum
         {
             get { return _Verfallsdatum; }
             set { _Verfallsdatum = value; NotifyPropertyChanged("Verfallsdatum"); }
@@ -275,9 +269,9 @@ namespace MiCLAS.MDE
             this.tbAb2.DataBindings.Add("EditValue", this, "Abmassfeld2");
             this.tbAb3.DataBindings.Add("EditValue", this, "Abmassfeld3");
             this.tbAb4.DataBindings.Add("EditValue", this, "Abmassfeld4");
-
             this.tbHerstelldatum.DataBindings.Add("EditValue", this, "Herstelldatum");
             this.tbVerfallsdatum.DataBindings.Add("EditValue", this, "Verfallsdatum");
+            this.tbSeriennummer.DataBindings.Add("EditValue", this, "Seriennummer");
 
 
             this.sllMenge1.DataBindings.Add("Text", this, "Menge1Text");
@@ -355,8 +349,8 @@ namespace MiCLAS.MDE
             this.ArtBezeichnung = String.Empty;
             this.InputField = String.Empty;
             this.Charge = String.Empty;
-            this.Herstelldatum = DateTime.Now;
-            this.Verfallsdatum = DateTime.Now;
+            this.Herstelldatum = String.Empty;
+            this.Verfallsdatum = String.Empty;
             this.Ursprungsland = String.Empty;
             this.Menge1 = 0.0;
             this.Menge2 = 0.0;
@@ -389,12 +383,13 @@ namespace MiCLAS.MDE
             this.lciTbVerfallsdatum.ContentVisible = false;
             this.lciTbHerstelldatum.ContentVisible = false;
             this.sllMenge2.ContentVisible = false;
-
+            this.LciTbSeriennummer.ContentVisible = false;
             this.Artikelnummer = String.Empty;
             this._Seriennummer = false;
 
             this.tbInput.Properties.ReadOnly = false;
             this.Seriennummer = string.Empty;
+
         }
 
         private void SetMDEModus()
@@ -482,7 +477,7 @@ namespace MiCLAS.MDE
                             SaveDaten(this.Seriennummer);
 
                         }
-                        else 
+                        else
                         {
                             sf.ShowDialog();
 
@@ -539,7 +534,7 @@ namespace MiCLAS.MDE
             double ab2 = 0.0;
             double ab3 = 0.0;
             double ab4 = 0.0;
-            
+
             if (this.Abmassfeld1 != null && !Convert.IsDBNull(this.Abmassfeld1))
             {
                 ab1 = Convert.ToDouble(this.Abmassfeld1);
@@ -559,7 +554,7 @@ namespace MiCLAS.MDE
             {
                 ab4 = Convert.ToDouble(this.Abmassfeld4);
             }
-            
+
             strSQL += this.Benutzernummer + ",";
             strSQL += "'" + strLager + "' ,";
             strSQL += "'" + strLagerort + "' ,";
@@ -575,12 +570,12 @@ namespace MiCLAS.MDE
             strSQL += "'" + this.Charge + "',";
             strSQL += "'" + this.Ursprungsland + "',";
             strSQL += "'" + strSeriennummer + "',";
-            if (this.lciTbHerstelldatum.ContentVisible)
-                strSQL += "'" + this.Herstelldatum.ToString("MM.dd.yyyy") + "',";
-            else strSQL += "'" + " 00:0:00" + "',";
-            if (this.lciTbVerfallsdatum.ContentVisible)
-                strSQL += "'" + this.Verfallsdatum.ToString("MM.dd.yyyy") + "')";
-            else  strSQL += "'" + " 00:0:00" + "')";
+            if (!String.IsNullOrEmpty(this.Herstelldatum))
+                strSQL += "'" + this.Herstelldatum + "',";
+            else strSQL += " NULL,";
+            if (!String.IsNullOrEmpty(this.Verfallsdatum))
+                strSQL += "'" + this.Verfallsdatum + "')";
+            else strSQL += "NULL)";
 
             using (OleDbConnection conn = new OleDbConnection(PublicAttributes.DataConnection.ConnectionString))
             {
@@ -651,7 +646,7 @@ namespace MiCLAS.MDE
             bool bLand = false;
             bool result = false;
             string input = this.tbInput.EditValue.ToString();
-           
+
             if (input != String.Empty)
             {
 
@@ -689,15 +684,17 @@ namespace MiCLAS.MDE
                         if (bLand)
                             this.Ursprungsland = input1.UrsprungslandInput;
                         if (this._Seriennummer)
+                        {
                             this.Seriennummer = input1.Seriennummer;
+                            this.LciTbSeriennummer.ContentVisible = true;
+                        }
+                            
                         if (bCharge)
                             this.Charge = input1.ChargeInput;
                         this.Menge1 = input1.Menge1;
-                        if (!string.IsNullOrEmpty(input1.HerstelldatumInput))
-                            this.Herstelldatum = DateTime.Parse(input1.HerstelldatumInput);
-                        if (!string.IsNullOrEmpty(input1.VerfallsdatumInput))
-                            this.Verfallsdatum = DateTime.Parse(input1.VerfallsdatumInput);
-                       
+                        this.Herstelldatum = input1.HerstelldatumInput;
+                        this.Verfallsdatum = input1.VerfallsdatumInput;
+
                         result = true;
                     }
 
@@ -736,14 +733,14 @@ namespace MiCLAS.MDE
                     this.Menge1 = 1;
                 }
                 else this.lciTbMenge1.Enabled = true;
-         
-               if(bLand || bCharge)
+
+                if (bLand || bCharge)
                 {
                     bShow = true;
                     this.lciTbHerstelldatum.ContentVisible = bShow;
                     this.lciTbVerfallsdatum.ContentVisible = bShow;
                 }
-       
+
 
                 this.InputField = input;
 
@@ -799,12 +796,22 @@ namespace MiCLAS.MDE
 
                 if (result)
                 {
-                    if (this.lciTbCharge.ContentVisible)
+                    if (this.lciTbCharge.ContentVisible && String.IsNullOrEmpty(this.Charge))
                         this.tbCharge.Focus();
-                    else if(this.lciLand.ContentVisible)
+                    else if (this.lciLand.ContentVisible && String.IsNullOrEmpty(this.Ursprungsland))
                         this.tbLand.Focus();
-                    else
-                        this.tbMenge1.Focus();
+                    else if (this.lciTbHerstelldatum.ContentVisible && String.IsNullOrEmpty(this.Herstelldatum))
+                        this.tbHerstelldatum.Focus();
+                    else if (this.lciTbVerfallsdatum.ContentVisible && String.IsNullOrEmpty(this.Verfallsdatum))
+                        this.tbVerfallsdatum.Focus();
+                    else if (this.lciTbMenge2.ContentVisible && this.Menge2 < 0)
+                        this.tbMenge2.Focus();
+                    else if (this.LciTbSeriennummer.ContentVisible && String.IsNullOrEmpty(this.Seriennummer))
+                        this.tbSeriennummer.Focus();
+                    else if (this.lciTbAb1.ContentVisible)
+                        this.tbAb1.Focus();
+                    else this.tbMenge1.Focus();
+
                 }
             }
 
@@ -969,6 +976,13 @@ namespace MiCLAS.MDE
                         e.Cancel = true;
                     }
                 }
+                else if (sender.Equals(this.tbSeriennummer))
+                {
+                    if (this.tbSeriennummer.EditValue == null || (this.tbSeriennummer.EditValue != null && this.tbSeriennummer.EditValue.ToString() == String.Empty))
+                    {
+                        e.Cancel = true;
+                    }
+                }
             }
         }
 
@@ -979,6 +993,8 @@ namespace MiCLAS.MDE
                 e.ErrorText = "Artikel nicht gefunden!";
             else if (sender.Equals(this.tbLand))
                 e.ErrorText = "Das Land eingeben !";
+            else if (sender.Equals(this.tbSeriennummer))
+                e.ErrorText = "Die Seriennummer eingeben !";
             else if (sender.Equals(this.tbCharge))
                 e.ErrorText = "Die Charge eingeben!";
             else if (sender.Equals(this.tbMenge1) && iError == 0)
@@ -1065,6 +1081,8 @@ namespace MiCLAS.MDE
             }));
         }
 
+
+
         #endregion events
 
         #region Layout 
@@ -1073,8 +1091,10 @@ namespace MiCLAS.MDE
 
         #endregion Layout
 
+        private void tbHerstelldatum_EditValueChanged(object sender, EventArgs e)
+        {
 
-
+        }
     }
 
 

@@ -107,7 +107,7 @@ namespace MiCLAS.MDE.Base
                     {
                         HerstelldatumInput = ResultGs1List.FirstOrDefault(x => x.Contains("11")).ToString().Split(new char[] { ',' }, 2)[1];
                         DateTime dt = DateTime.ParseExact(HerstelldatumInput, "yyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                        string outp = dt.ToString("dd-MM-yyyy ");
+                        string outp = dt.ToString("dd.MM.yyyy ");
                         HerstelldatumInput = outp;
                     }
 
@@ -115,7 +115,7 @@ namespace MiCLAS.MDE.Base
                     {
                         VerfallsdatumInput = ResultGs1List.FirstOrDefault(x => x.Contains("17")).ToString().Split(new char[] { ',' }, 2)[1];
                         DateTime dt = DateTime.ParseExact(VerfallsdatumInput, "yyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                        string outp = dt.ToString("dd-MM-yyyy ");
+                        string outp = dt.ToString("dd.MM.yyyy ");
                         VerfallsdatumInput = outp;
                     }
 
