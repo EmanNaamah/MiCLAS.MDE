@@ -271,14 +271,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MiCLAS.MDE.exe" size="232960">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MiCLAS.MDE.exe" size="233472">
       <assemblyIdentity name="MiCLAS.MDE" version="1.2.2.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>usSP3I/3XzY5OT3HcoInBgbq/f/AKr9/p1Rb1dJrZQs=</dsig:DigestValue>
+        <dsig:DigestValue>ecp//vJ8Hqf+gBmfu0cMouQCrAXttoP5jJpNkm6hmOw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

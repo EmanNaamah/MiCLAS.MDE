@@ -164,11 +164,11 @@ namespace MiCLAS.MDE
             set { _Abmassfeld4Text = value; NotifyPropertyChanged("Abmassfeld4Text"); }
         }
         string _Herstelldatum = String.Empty;
-
         public string Herstelldatum
         {
             get { return _Herstelldatum; }
-            set { _Herstelldatum = value; NotifyPropertyChanged("Herstelldatum"); }
+            set {
+                if (!String.IsNullOrEmpty(value)) { _Herstelldatum = DateTime.Parse(value).ToString("MM.dd.yyyy"); } else _Herstelldatum = value; NotifyPropertyChanged("Herstelldatum"); }
         }
 
         string _Verfallsdatum = String.Empty;
@@ -176,7 +176,7 @@ namespace MiCLAS.MDE
         public string Verfallsdatum
         {
             get { return _Verfallsdatum; }
-            set { _Verfallsdatum = value; NotifyPropertyChanged("Verfallsdatum"); }
+            set { if (!String.IsNullOrEmpty(value)) { _Verfallsdatum = DateTime.Parse(value).ToString("MM.dd.yyyy"); } else _Verfallsdatum = value; NotifyPropertyChanged("Verfallsdatum"); }
         }
 
 
@@ -830,12 +830,7 @@ namespace MiCLAS.MDE
 
          void CheckAndFocus()
         {
-            //if (this.lciTbCharge.ContentVisible && String.IsNullOrEmpty(this.Charge))
-            //    this.tbCharge.Focus();
-            //else if (this.lciLand.ContentVisible && String.IsNullOrEmpty(this.Ursprungsland))
-            //    this.tbLand.Focus();
-            //else
-            //    this.tbMenge1.Focus();
+            
             if (this.lciTbCharge.ContentVisible && String.IsNullOrEmpty(this.Charge))
                 this.tbCharge.Focus();
             else if (this.lciLand.ContentVisible && String.IsNullOrEmpty(this.Ursprungsland))

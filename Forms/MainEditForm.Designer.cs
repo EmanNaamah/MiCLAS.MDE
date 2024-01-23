@@ -311,9 +311,13 @@
             this.tbHerstelldatum.Name = "tbHerstelldatum";
             this.tbHerstelldatum.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbHerstelldatum.Properties.CalendarTimeProperties.AllowMouseWheel = false;
             this.tbHerstelldatum.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbHerstelldatum.Properties.CalendarTimeProperties.MaskSettings.Set("mask", "d");
+            this.tbHerstelldatum.Properties.CalendarTimeProperties.UseMaskAsDisplayFormat = true;
             this.tbHerstelldatum.Properties.NullDate = "";
+            this.tbHerstelldatum.Properties.UseMaskAsDisplayFormat = true;
             this.tbHerstelldatum.Size = new System.Drawing.Size(191, 20);
             this.tbHerstelldatum.StyleController = this.mainLayoutControl;
             this.tbHerstelldatum.TabIndex = 5;
@@ -323,11 +327,15 @@
             this.tbVerfallsdatum.EditValue = null;
             this.tbVerfallsdatum.Location = new System.Drawing.Point(99, 216);
             this.tbVerfallsdatum.Name = "tbVerfallsdatum";
+            this.tbVerfallsdatum.Properties.AllowMouseWheel = false;
             this.tbVerfallsdatum.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tbVerfallsdatum.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbVerfallsdatum.Properties.CalendarTimeProperties.MaskSettings.Set("mask", "d");
+            this.tbVerfallsdatum.Properties.CalendarTimeProperties.UseMaskAsDisplayFormat = true;
             this.tbVerfallsdatum.Properties.NullDate = "";
+            this.tbVerfallsdatum.Properties.UseMaskAsDisplayFormat = true;
             this.tbVerfallsdatum.Size = new System.Drawing.Size(191, 20);
             this.tbVerfallsdatum.StyleController = this.mainLayoutControl;
             this.tbVerfallsdatum.TabIndex = 6;
