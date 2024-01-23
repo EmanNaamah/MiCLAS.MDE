@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MiCLAS.MDE
@@ -683,12 +684,11 @@ namespace MiCLAS.MDE
                         bLand = input1.bLand;
                         if (bLand)
                             this.Ursprungsland = input1.UrsprungslandInput;
-                        if (this._Seriennummer)
+                        if (this._Seriennummer && !String.IsNullOrEmpty(input1.Seriennummer))
                         {
                             this.Seriennummer = input1.Seriennummer;
                             this.LciTbSeriennummer.ContentVisible = true;
                         }
-                            
                         if (bCharge)
                             this.Charge = input1.ChargeInput;
                         this.Menge1 = input1.Menge1;
@@ -729,8 +729,8 @@ namespace MiCLAS.MDE
                 this.lciLand.ContentVisible = bShow;
                 if (!string.IsNullOrEmpty(this.Seriennummer))
                 {
-                    this.lciTbMenge1.Enabled = false;
                     this.Menge1 = 1;
+                    this.tbMenge1.Enabled = false;
                 }
                 else this.lciTbMenge1.Enabled = true;
 
@@ -796,21 +796,7 @@ namespace MiCLAS.MDE
 
                 if (result)
                 {
-                    if (this.lciTbCharge.ContentVisible && String.IsNullOrEmpty(this.Charge))
-                        this.tbCharge.Focus();
-                    else if (this.lciLand.ContentVisible && String.IsNullOrEmpty(this.Ursprungsland))
-                        this.tbLand.Focus();
-                    else if (this.lciTbHerstelldatum.ContentVisible && String.IsNullOrEmpty(this.Herstelldatum))
-                        this.tbHerstelldatum.Focus();
-                    else if (this.lciTbVerfallsdatum.ContentVisible && String.IsNullOrEmpty(this.Verfallsdatum))
-                        this.tbVerfallsdatum.Focus();
-                    else if (this.lciTbMenge2.ContentVisible && this.Menge2 < 0)
-                        this.tbMenge2.Focus();
-                    else if (this.LciTbSeriennummer.ContentVisible && String.IsNullOrEmpty(this.Seriennummer))
-                        this.tbSeriennummer.Focus();
-                    else if (this.lciTbAb1.ContentVisible)
-                        this.tbAb1.Focus();
-                    else this.tbMenge1.Focus();
+                    CheckAndFocus();
 
                 }
             }
@@ -835,7 +821,38 @@ namespace MiCLAS.MDE
                         InvokeFocus();
                     }));
                 }
+                
+                
+
             }
+           
+        }
+
+         void CheckAndFocus()
+        {
+            //if (this.lciTbCharge.ContentVisible && String.IsNullOrEmpty(this.Charge))
+            //    this.tbCharge.Focus();
+            //else if (this.lciLand.ContentVisible && String.IsNullOrEmpty(this.Ursprungsland))
+            //    this.tbLand.Focus();
+            //else
+            //    this.tbMenge1.Focus();
+            if (this.lciTbCharge.ContentVisible && String.IsNullOrEmpty(this.Charge))
+                this.tbCharge.Focus();
+            else if (this.lciLand.ContentVisible && String.IsNullOrEmpty(this.Ursprungsland))
+                this.tbLand.Focus();
+            else if (this.lciTbHerstelldatum.ContentVisible && String.IsNullOrEmpty(this.Herstelldatum))
+                this.tbHerstelldatum.Focus();
+            else if (this.lciTbVerfallsdatum.ContentVisible && String.IsNullOrEmpty(this.Verfallsdatum))
+                this.tbVerfallsdatum.Focus();
+            else if (this.lciTbMenge1.ContentVisible && this.Menge1 <= 0)
+                this.tbMenge1.Focus();
+            else if (this.LciTbSeriennummer.ContentVisible && String.IsNullOrEmpty(this.Seriennummer))
+                this.tbSeriennummer.Focus();
+            else if (this.lciTbAb1.ContentVisible)
+                this.tbAb1.Focus();
+            else if (this.lciTbMenge2.ContentVisible && this.Menge2 <= 0)
+                  this.tbMenge2.Focus();
+
         }
 
         private void tbField_Validated(object sender, EventArgs e)
