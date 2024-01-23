@@ -401,16 +401,7 @@ namespace MiCLAS.MDE
                         sbSatz.Append(Abmassfeld4.ToString("N3", CultureInfo.InvariantCulture).Replace(",", ""));                    
                     sbSatz.Append(";");
 
-                    if (!String.IsNullOrEmpty(Herstelldatum))
-                    {
-                        sbSatz.Append(Herstelldatum);
-                        sbSatz.Append(";");
-                    }
-                    if (!String.IsNullOrEmpty(verfallsdatum))
-                    {
-                        sbSatz.Append(verfallsdatum);
-                        sbSatz.Append(";");
-                    }
+                   
                     sbSatz.Append(Seriennummer);
                     sbSatz.Append(";");
                     
@@ -422,7 +413,16 @@ namespace MiCLAS.MDE
                         sbSatz.Append(Ursprungsland);
                         sbSatz.Append(";");
                     }
-
+                    if (!String.IsNullOrEmpty(Herstelldatum))
+                    {
+                        sbSatz.Append(Herstelldatum);
+                        sbSatz.Append(";");
+                    }
+                    if (!String.IsNullOrEmpty(verfallsdatum))
+                    {
+                        sbSatz.Append(verfallsdatum);
+                        sbSatz.Append(";");
+                    }
                     sbSatz.Append(Datum);
 
                     listSatz.Add(sbSatz.ToString());
