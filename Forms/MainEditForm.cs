@@ -191,6 +191,8 @@ namespace MiCLAS.MDE
 
         bool _Seriennummer = false;
 
+        bool bVerfallsdatumErforderlich = false;
+        bool bHerstelldatumErforderlich = false;
 
         double _MengeGezaehlt = 0.0;
 
@@ -643,6 +645,10 @@ namespace MiCLAS.MDE
 
         private void tbInput_Validating(object sender, CancelEventArgs e)
         {
+            int VerfallDatumStatus = 0;
+            int HerstelldatumStatus = 0;
+            bool bVerfallsdatumVisible = false;
+            bool bHerstelldatumVisible = false;
             bool bCharge = false;
             bool bLand = false;
             bool result = false;
@@ -664,6 +670,38 @@ namespace MiCLAS.MDE
                     this.Abmassfeld4Text = input1.Abmassfeld4TextInput;
                     this.Seriennummer = input1.Seriennummer;
                     this._Seriennummer = input1._SeriennummerInput;
+                    VerfallDatumStatus = input1.VerfallsdatumStatus;
+                    switch (VerfallDatumStatus)
+                    {
+                        case 2:
+                            bVerfallsdatumVisible = true;
+                            bVerfallsdatumErforderlich = false;
+                            break;
+                        case 1:
+                            bVerfallsdatumVisible = true;
+                            bVerfallsdatumErforderlich = true;
+                            break;
+                        case 0:
+                            bVerfallsdatumVisible = false;
+                            bVerfallsdatumErforderlich = false;
+                            break;
+                    }
+                    HerstelldatumStatus = input1.HerstelldatumStatus;
+                    switch (HerstelldatumStatus)
+                    {
+                        case 2:
+                            bHerstelldatumVisible = true;
+                            bHerstelldatumErforderlich = false;
+                            break;
+                        case 1:
+                            bHerstelldatumVisible = true;
+                            bHerstelldatumErforderlich = true;
+                            break;
+                        case 0:
+                            bHerstelldatumVisible = false;
+                            bHerstelldatumErforderlich = false;
+                            break;
+                    }
                     bCharge = input1.bCharge;
                     bLand = input1.bLand;
                     result = true;
@@ -691,10 +729,45 @@ namespace MiCLAS.MDE
                         }
                         if (bCharge)
                             this.Charge = input1.ChargeInput;
-                        this.Menge1 = input1.Menge1;
-                        this.Herstelldatum = input1.HerstelldatumInput;
-                        this.Verfallsdatum = input1.VerfallsdatumInput;
-
+                       this.Menge1 = input1.Menge1;
+                        VerfallDatumStatus = input1.VerfallsdatumStatus;
+                        switch (VerfallDatumStatus)
+                        {
+                            case 2:
+                                bVerfallsdatumVisible = true;
+                                bVerfallsdatumErforderlich = false;
+                                this.Verfallsdatum = input1.VerfallsdatumInput;
+                                break;
+                            case 1:
+                                bVerfallsdatumVisible = true;
+                                bVerfallsdatumErforderlich = true;
+                                this.Verfallsdatum = input1.VerfallsdatumInput;
+                                break;
+                            case 0:
+                                bVerfallsdatumVisible = false;
+                                bVerfallsdatumErforderlich = false;
+                                break;
+                        }
+                        HerstelldatumStatus = input1.HerstelldatumStatus;
+                        switch (HerstelldatumStatus)
+                        {
+                            case 2:
+                                bHerstelldatumVisible = true;
+                                bHerstelldatumErforderlich = false;
+                                this.Herstelldatum = input1.HerstelldatumInput;
+                                break;
+                            case 1:
+                                bHerstelldatumVisible = true;
+                                bHerstelldatumErforderlich = true;
+                                this.Herstelldatum = input1.HerstelldatumInput;
+                                break;
+                            case 0:
+                                bHerstelldatumVisible = false;
+                                bHerstelldatumErforderlich = false;
+                                break;
+                        }
+                       
+                       
                         result = true;
                     }
 
@@ -733,15 +806,8 @@ namespace MiCLAS.MDE
                     this.tbMenge1.Enabled = false;
                 }
                 else this.lciTbMenge1.Enabled = true;
-
-                if (bLand || bCharge)
-                {
-                    bShow = true;
-                    this.lciTbHerstelldatum.ContentVisible = bShow;
-                    this.lciTbVerfallsdatum.ContentVisible = bShow;
-                }
-
-
+                this.lciTbHerstelldatum.ContentVisible = bHerstelldatumVisible;
+                this.lciTbVerfallsdatum.ContentVisible = bVerfallsdatumVisible;
                 this.InputField = input;
 
                 if (result)
@@ -995,6 +1061,24 @@ namespace MiCLAS.MDE
                         e.Cancel = true;
                     }
                 }
+                else if (sender.Equals(this.tbVerfallsdatum))
+                {
+                    if(bVerfallsdatumErforderlich)
+                    {
+                        if (this.tbVerfallsdatum.EditValue == null || (this.tbVerfallsdatum.EditValue != null && this.tbVerfallsdatum.EditValue.ToString() == String.Empty))
+                        {
+                            e.Cancel = true;
+                        }
+                    }
+                }
+                else if (sender.Equals(this.tbHerstelldatum))
+                {
+                    if(bHerstelldatumErforderlich)
+                    { if (this.tbHerstelldatum.EditValue == null || (this.tbHerstelldatum.EditValue != null && this.tbHerstelldatum.EditValue.ToString() == String.Empty))
+                    {
+                        e.Cancel = true;
+                    }}
+                }
             }
         }
 
@@ -1009,7 +1093,22 @@ namespace MiCLAS.MDE
                 e.ErrorText = "Die Seriennummer eingeben !";
             else if (sender.Equals(this.tbCharge))
                 e.ErrorText = "Die Charge eingeben!";
-            else if (sender.Equals(this.tbMenge1) && iError == 0)
+            else if (sender.Equals(this.tbHerstelldatum))
+            {
+                if (bHerstelldatumErforderlich)
+                {
+                    e.ErrorText = "Das Herstelldatum eingeben!";
+                }
+            }
+           else if (sender.Equals(this.tbVerfallsdatum))
+                {
+                    if (bVerfallsdatumErforderlich)
+                    {
+                        e.ErrorText = "Das Verfallsdatum eingeben!";
+                    }
+                }
+                   
+           else if (sender.Equals(this.tbMenge1) && iError == 0)
             {
                 e.ErrorText = "Menge 2 bereits vorhanden!";
             }

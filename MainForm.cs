@@ -402,28 +402,13 @@ namespace MiCLAS.MDE
                     sbSatz.Append(";");
 
                    
-                    sbSatz.Append(Seriennummer);
-                    sbSatz.Append(";");
-                    
-                    sbSatz.Append(Charge);
-                    sbSatz.Append(";");
+                    sbSatz.Append(Seriennummer); sbSatz.Append(";");
+                    sbSatz.Append(Charge);  sbSatz.Append(";");
+                    sbSatz.Append(Ursprungsland);  sbSatz.Append(";");
+                    sbSatz.Append(Herstelldatum);  sbSatz.Append(";");
+                    sbSatz.Append(verfallsdatum); sbSatz.Append(";");
+                    sbSatz.Append(Datum); sbSatz.Append(";");
 
-                    if (!String.IsNullOrEmpty(Ursprungsland))
-                    {
-                        sbSatz.Append(Ursprungsland);
-                        sbSatz.Append(";");
-                    }
-                    if (!String.IsNullOrEmpty(Herstelldatum))
-                    {
-                        sbSatz.Append(Herstelldatum);
-                        sbSatz.Append(";");
-                    }
-                    if (!String.IsNullOrEmpty(verfallsdatum))
-                    {
-                        sbSatz.Append(verfallsdatum);
-                        sbSatz.Append(";");
-                    }
-                    sbSatz.Append(Datum);
 
                     listSatz.Add(sbSatz.ToString());
                 }

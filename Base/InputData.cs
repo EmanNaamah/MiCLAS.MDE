@@ -25,6 +25,8 @@ namespace MiCLAS.MDE.Base
         public string ArtikelnummerInput { get; set; }
         public string HerstelldatumInput { get; private set; }
         public string VerfallsdatumInput { get; private set; }
+        public int HerstelldatumStatus { get; set; }
+        public int VerfallsdatumStatus { get; set; }
         public string UrsprungslandInput { get; private set; }
         public string Seriennummer { get; private set; }
         public string ChargeInput { get; private set; }
@@ -57,6 +59,8 @@ namespace MiCLAS.MDE.Base
                                 this._SeriennummerInput = reader.GetBoolValue("Seriennummernpflichtig");
                                 bCharge = reader.GetBoolValue("Chargenpflichtig");
                                 bLand = reader.GetBoolValue("Ursprungslandpflichtig");
+                                HerstelldatumStatus = reader.GetIntValue("Hestelldatum");
+                                VerfallsdatumStatus = reader.GetIntValue("Verfallsdatum");
                                 ResultInput = true;
                             }
                         }
@@ -73,10 +77,7 @@ namespace MiCLAS.MDE.Base
                             conn.Close();
                         }
                     }
-
-
                 }
-
             }
 
             return ResultInput;
@@ -85,7 +86,7 @@ namespace MiCLAS.MDE.Base
         {
             try
             {
-                List<String> GS1ToList = gs1.Replace(@"\F".ToString(), ",").Split(',').ToList();
+                List<String> GS1ToList = gs1.Replace(@"".ToString(), ",").Split(',').ToList();
                 List<String> ResultGs1List = new List<string>();
 
                 for (int i = 0; i < GS1ToList.Count; i++)
@@ -103,30 +104,41 @@ namespace MiCLAS.MDE.Base
                     if (ResultGs1List.FirstOrDefault(x => x.Contains("10")) != null)
                         ChargeInput = ResultGs1List.FirstOrDefault(x => x.Contains("10")).ToString().Split(new char[] { ',' }, 2)[1];
 
-                    if (ResultGs1List.FirstOrDefault(x => x.Contains("11")) != null)
+                    if (ResultGs1List.FirstOrDefault(x => x.Contains("21")) != null)
                     {
-                        HerstelldatumInput = ResultGs1List.FirstOrDefault(x => x.Contains("11")).ToString().Split(new char[] { ',' }, 2)[1];
+                        Seriennummer = ResultGs1List.FirstOrDefault(x => x.Contains("21")).ToString().Split(new char[] { ',' }, 2)[1];
+                    }
+                    if (ResultGs1List.FirstOrDefault(x => x.Contains("422")) != null)
+                    {
+                        UrsprungslandInput = ResultGs1List.FirstOrDefault(x => x.Contains("422")).ToString().Split(new char[] { ',' }, 2)[1];
+                        UrsprungslandInput = UrsprungslandInput.Substring(0, 3);
+                    }
+                      
+                    if (ResultGs1List.FirstOrDefault(x => x.Contains("ProducerDate_JJMMDD")) != null)
+                    {
+                        HerstelldatumInput = ResultGs1List.FirstOrDefault(x => x.Contains("ProducerDate_JJMMDD")).ToString().Split(new char[] { ',' }, 2)[1];
+
+                        if (!string.IsNullOrEmpty(UrsprungslandInput))
+                        {
+                            var index = HerstelldatumInput.IndexOf("ProducerDate_JJMMDD");
+                            HerstelldatumInput = HerstelldatumInput.Substring(index + 21);
+                        }
+
+                        HerstelldatumInput = HerstelldatumInput.Substring(0, 6);
                         DateTime dt = DateTime.ParseExact(HerstelldatumInput, "yyMMdd", System.Globalization.CultureInfo.InvariantCulture);
                         string outp = dt.ToString("dd.MM.yyyy ");
                         HerstelldatumInput = outp;
                     }
 
-                    if (ResultGs1List.FirstOrDefault(x => x.Contains("17")) != null)
+                    if (ResultGs1List.FirstOrDefault(x => x.Contains("ExpiryDate_JJMMDD")) != null)
                     {
-                        VerfallsdatumInput = ResultGs1List.FirstOrDefault(x => x.Contains("17")).ToString().Split(new char[] { ',' }, 2)[1];
+                        VerfallsdatumInput = ResultGs1List.FirstOrDefault(x => x.Contains("ExpiryDate_JJMMDD")).ToString().Split(new char[] { ',' }, 2)[1];
+                        var index = VerfallsdatumInput.IndexOf("ExpiryDate_JJMMDD");
+                        VerfallsdatumInput = VerfallsdatumInput.Substring(index+19);
+                        VerfallsdatumInput = VerfallsdatumInput.Substring(0, 6);
                         DateTime dt = DateTime.ParseExact(VerfallsdatumInput, "yyMMdd", System.Globalization.CultureInfo.InvariantCulture);
                         string outp = dt.ToString("dd.MM.yyyy ");
                         VerfallsdatumInput = outp;
-                    }
-
-                    if (ResultGs1List.FirstOrDefault(x => x.Contains("422")) != null)
-                        UrsprungslandInput = ResultGs1List.FirstOrDefault(x => x.Contains("422")).ToString().Split(new char[] { ',' }, 2)[1];
-
-                    if (ResultGs1List.FirstOrDefault(x => x.Contains("21")) != null)
-                    {
-                        Seriennummer = ResultGs1List.FirstOrDefault(x => x.Contains("21")).ToString().Split(new char[] { ',' }, 2)[1];
-                        //Menge1 = 1;
-
                     }
 
 

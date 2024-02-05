@@ -321,6 +321,9 @@
             this.tbHerstelldatum.Size = new System.Drawing.Size(191, 20);
             this.tbHerstelldatum.StyleController = this.mainLayoutControl;
             this.tbHerstelldatum.TabIndex = 5;
+            this.tbHerstelldatum.InvalidValue += new DevExpress.XtraEditors.Controls.InvalidValueExceptionEventHandler(this.tbInput_InvalidValue);
+            this.tbHerstelldatum.Leave += new System.EventHandler(this.tbField_Validated);
+            this.tbHerstelldatum.Validating += new System.ComponentModel.CancelEventHandler(this.tbField_Validating);
             // 
             // tbVerfallsdatum
             // 
@@ -339,6 +342,9 @@
             this.tbVerfallsdatum.Size = new System.Drawing.Size(191, 20);
             this.tbVerfallsdatum.StyleController = this.mainLayoutControl;
             this.tbVerfallsdatum.TabIndex = 6;
+            this.tbVerfallsdatum.InvalidValue += new DevExpress.XtraEditors.Controls.InvalidValueExceptionEventHandler(this.tbInput_InvalidValue);
+            this.tbVerfallsdatum.Leave += new System.EventHandler(this.tbField_Validated);
+            this.tbVerfallsdatum.Validating += new System.ComponentModel.CancelEventHandler(this.tbField_Validating);
             // 
             // layoutControlGroup1
             // 
