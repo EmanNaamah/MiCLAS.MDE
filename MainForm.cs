@@ -177,8 +177,8 @@ namespace MiCLAS.MDE
                                 {
                                     sSatz = ((string)enumSatz.Current).Split(';');
 
-                                    string strSQL = "INSERT INTO MDEArtikel (Artikelnummer, Bezeichnung1, Mengeneinheit1, Mengeneinheit2, Abmassfeld1, Abmassfeld2, Abmassfeld3, Abmassfeld4, Seriennummernpflichtig, Chargenpflichtig, Ursprungslandpflichtig, EANCode, Barcode, EDICode) VALUES (";
-                                    strSQL += "@Artikelnummer, @Bezeichnung1, @Mengeneinheit1, @Mengeneinheit2, @Abmassfeld1, @Abmassfeld2, @Abmassfeld3, @Abmassfeld4, @Seriennummernpflichtig, @Chargenpflichtig, @Ursprungslandpflichtig, @EANCode, @Barcode, @EDICode)";
+                                    string strSQL = "INSERT INTO MDEArtikel (Artikelnummer, Bezeichnung1, Mengeneinheit1, Mengeneinheit2, Abmassfeld1, Abmassfeld2, Abmassfeld3, Abmassfeld4, Seriennummernpflichtig, Chargenpflichtig, Ursprungslandpflichtig,Hestelldatum,Verfallsdatum, EANCode, Barcode, EDICode) VALUES (";
+                                    strSQL += "@Artikelnummer, @Bezeichnung1, @Mengeneinheit1, @Mengeneinheit2, @Abmassfeld1, @Abmassfeld2, @Abmassfeld3, @Abmassfeld4, @Seriennummernpflichtig, @Chargenpflichtig, @Ursprungslandpflichtig,@Hestelldatum,@Verfallsdatum, @EANCode, @Barcode, @EDICode)";
 
                                     using (OleDbCommand cmd = new OleDbCommand(strSQL, conn))
                                     {
@@ -194,8 +194,10 @@ namespace MiCLAS.MDE
                                         cmd.Parameters.AddWithValue("@Chargenpflichtig", sSatz[9] == "1" ? 1 : 0);
                                         cmd.Parameters.AddWithValue("@Ursprungslandpflichtig", sSatz[10] == "1" ? 1 : 0);
                                         cmd.Parameters.AddWithValue("@EANCode", sSatz[11]);
-                                        cmd.Parameters.AddWithValue("@Barcode", sSatz[12]);
-                                        cmd.Parameters.AddWithValue("@EDICode", sSatz[13]);
+                                        cmd.Parameters.AddWithValue("@Hestelldatum", sSatz[12]);
+                                        cmd.Parameters.AddWithValue("@Verfallsdatum", sSatz[13]);
+                                        cmd.Parameters.AddWithValue("@Barcode", sSatz[14]);
+                                        cmd.Parameters.AddWithValue("@EDICode", sSatz[15]);
 
                                         cmd.ExecuteNonQuery();
                                     }
